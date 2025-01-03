@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Notes</string>
+
+    <!--    Menu main activity-->
+    <string name="title_btn_add">Add</string>
+    <string name="description_btn_add">Button for adding new note</string>
+    <string name="title_btn_edit">Edit</string>
+    <string name="description_btn_edit">Button to edit notes</string>
+    <string name="title_btn_search">Search</string>
+    <string name="description_btn_search">Button to search in notes</string>
+
+    <!--    Menu add note-->
+    <string name="title_btn_done">Done</string>
+    <string name="description_btn_done">Button to save note</string>
+
+    <!--    EditText hints-->
+    <string name="et_title_hint">Input Title</string>
+
 </resources>

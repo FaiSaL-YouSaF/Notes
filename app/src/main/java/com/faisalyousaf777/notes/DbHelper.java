@@ -2,10 +2,14 @@ package com.faisalyousaf777.notes;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -24,15 +28,45 @@ public class DbHelper extends SQLiteOpenHelper {
 //    public static final String INSERT = String.format("INSERT INTO %s (%s, %s) VALUES (?, ?)", TABLE_NAME, COLUMN_TITLE, COLUMN_CONTENT);
 //    public static final String UPDATE = String.format("UPDATE %s SET %s = ?, %s = ? WHERE %s = ?", TABLE_NAME, COLUMN_TITLE, COLUMN_CONTENT, COLUMN_ID);
 //    public static final String DELETE = String.format("DELETE FROM %s WHERE %s = ?", TABLE_NAME, COLUMN_ID);
+    public static final String INSERT_SAMPLE_DATA = "INSERT INTO notes_table (title, content) VALUES \n" +
+        "('Title 100', 'This is the content one'),\n" +
+        "('Title Two', 'This is the content two'),\n" +
+        "('Title Three', 'This is the content three'),\n" +
+        "('Title Four', 'This is the content four'),\n" +
+        "('Title Five', 'This is the content five'),\n" +
+        "('Title Six', 'This is the content six'),\n" +
+        "('Title Seven', 'This is the content seven'),\n" +
+        "('Title Eight', 'This is the content eight'),\n" +
+        "('Title Nine', 'This is the content nine'),\n" +
+        "('Title Ten', 'This is the content ten'),\n" +
+        "('Title Eleven', 'This is the content eleven'),\n" +
+        "('Title Twelve', 'This is the content twelve'),\n" +
+        "('Title Thirteen', 'This is the content thirteen'),\n" +
+        "('Title Fourteen', 'This is the content fourteen'),\n" +
+        "('Title Fifteen', 'This is the content fifteen'),\n" +
+        "('Title Sixteen', 'This is the content sixteen'),\n" +
+        "('Title Seventeen', 'This is the content seventeen'),\n" +
+        "('Title Eighteen', 'This is the content eighteen'),\n" +
+        "('Title Nineteen', 'This is the content nineteen'),\n" +
+        "('Title Twenty', 'This is the content twenty'),\n" +
+        "('Title Twenty-One', 'This is the content twenty-one'),\n" +
+        "('Title Twenty-Two', 'This is the content twenty-two'),\n" +
+        "('Title Twenty-Three', 'This is the content twenty-three'),\n" +
+        "('Title Twenty-Four', 'This is the content twenty-four'),\n" +
+        "('Title Twenty-Five', 'This is the content twenty-five'),\n" +
+        "('Title Twenty-Six', 'This is the content twenty-six'),\n" +
+        "('Title Twenty-Seven', 'This is the content twenty-seven'),\n" +
+        "('Title Twenty-Eight', 'This is the content twenty-eight'),\n" +
+        "('Title Twenty-Nine', 'This is the content twenty-nine'),\n" +
+        "('Title Thirty', 'This is the content thirty')";
 
-
-    private DbHelper instance;
+    private static DbHelper instance;
 
     private DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public DbHelper getInstance(Context context) {
+    public static DbHelper getInstance(Context context) {
         if (instance == null) {
             instance = new DbHelper(context);
         }
@@ -42,6 +76,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE);
+        sqLiteDatabase.execSQL(INSERT_SAMPLE_DATA);
     }
 
     @Override
@@ -50,6 +85,29 @@ public class DbHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(DROP_TABLE);
             sqLiteDatabase.execSQL(CREATE_TABLE);
         }
+    }
+
+//    public void insertSampleData() {
+//        SQLiteDatabase db = getWritableDatabase();
+//        db.execSQL(INSERT_SAMPLE_DATA);
+//    }
+
+    public List<Note> getAllNotes() {
+        List<Note> notes = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(SELECT_ALL, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+                String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
+                notes.add(new Note(id, title, content));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return notes;
     }
 
     public boolean insertNote(final Note note) {
