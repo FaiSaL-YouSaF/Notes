@@ -15,5 +15,6 @@
 
     <!--    EditText hints-->
     <string name="et_title_hint">Input Title</string>
+    <string name="et_content_hint">Start typing here...</string>
 
 </resources>

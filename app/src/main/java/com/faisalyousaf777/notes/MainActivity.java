@@ -20,9 +20,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String NOTE_ID = "note_id";
     MaterialToolbar topAppBar;
     RecyclerView rvNotes;
     NoteAdapter noteAdapter;
+    DbHelper db;
+    static List<Note> fetchedNotes;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,21 +36,10 @@ public class MainActivity extends AppCompatActivity {
         topAppBar = findViewById(R.id.topAppBar);
         rvNotes = findViewById(R.id.rvNotes);
 
+        db = DbHelper.getInstance(this);
 
-        DbHelper dbHelper = DbHelper.getInstance(this);
-        List<Note> listOfNotes = dbHelper.getAllNotes();
-
-        noteAdapter = new NoteAdapter(listOfNotes);
-        noteAdapter.setOnAdapterItemClickListener((View itemView, int position) -> {
-                Note note = listOfNotes.get(position);
-                Intent intent = new Intent(MainActivity.this, EditNote.class);
-                intent.putExtra("title", note.getTitle());
-                intent.putExtra("content", note.getContent());
-                startActivity(intent);
-        });
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
-        rvNotes.setAdapter(noteAdapter);
-
+        refreshNotes();
         ViewCompat.setOnApplyWindowInsetsListener(rvNotes, (v, insets) -> {
             Insets insets1 = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(insets1.left, insets1.top, insets1.right, insets1.bottom);
@@ -59,11 +51,29 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddNote.class);
                 startActivity(intent);
             } else if (item.getItemId() == R.id.btn_edit) {
-                Toast.makeText(this, "Edit", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Edit will be available soon", Toast.LENGTH_SHORT).show();
             } else if (item.getItemId() == R.id.btn_search) {
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Search will be available soon", Toast.LENGTH_SHORT).show();
             }
             return false;
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshNotes();
+    }
+
+    void refreshNotes() {
+        fetchedNotes = db.getAllNotes();
+        noteAdapter = new NoteAdapter(fetchedNotes);
+        rvNotes.setAdapter(noteAdapter);
+        noteAdapter.setOnAdapterItemClickListener((itemView, position) -> {
+            Intent intent = new Intent(MainActivity.this, AddNote.class);
+            intent.putExtra(NOTE_ID, position);
+            startActivity(intent);
+        });
+    }
+
 }

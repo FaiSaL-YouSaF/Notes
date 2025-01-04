@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -16,13 +17,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     List<Note> listOfNotes;
     private OnAdapterItemClickListener onAdapterItemClickListener;
+    private OnAdapterItemLongClickListener onAdapterItemLongClickListener;
 
     public void setOnAdapterItemClickListener(OnAdapterItemClickListener onAdapterItemClickListener) {
         this.onAdapterItemClickListener = onAdapterItemClickListener;
     }
+    public void setOnAdapterItemLongClickListener(OnAdapterItemLongClickListener onAdapterItemLongClickListener) {
+        this.onAdapterItemLongClickListener = onAdapterItemLongClickListener;
+    }
 
     public NoteAdapter(List<Note> listOfNotes) {
         this.listOfNotes = listOfNotes;
+    }
+
+    public void setListOfNotes(List<Note> listOfNotes) {
+        this.listOfNotes = listOfNotes;
+//        notifyDataSetChanged();
     }
 
     @NonNull
@@ -55,12 +65,31 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(@NonNull View itemView) {
                     if (onAdapterItemClickListener != null) {
-                        onAdapterItemClickListener.onItemClicked(view, getAdapterPosition());
-                        Toast.makeText(view.getContext(), "Item clicked at position: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                        Log.d("NoteAdapter", "onClick: " + getAdapterPosition());
+                        onAdapterItemClickListener.onItemClicked(itemView, getAdapterPosition());
+                        Toast.makeText(itemView.getContext(), "Item clicked at position: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
                     }
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(@NonNull View itemView) {
+                    AlertDialog confirmDeleteDialog = new AlertDialog.Builder(itemView.getContext())
+                            .setTitle("Delete Note")
+                            .setMessage("Are you sure you want to delete this note?")
+                            .setPositiveButton("Yes", (dialog, which) -> {
+                                Log.d("NoteAdapter", "onLongClick: Deleting note at position: " + getAdapterPosition());
+                                listOfNotes.remove(getAdapterPosition());
+                                notifyItemRemoved(getAdapterPosition());
+                                notifyItemRangeChanged(getAdapterPosition(), listOfNotes.size());
+                            })
+                            .setNegativeButton("No", (dialog, which) -> {
+                                dialog.dismiss();
+                            })
+                            .create();
+                    confirmDeleteDialog.show();
+                    return true;
                 }
             });
         }
@@ -68,6 +97,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     interface OnAdapterItemClickListener {
         void onItemClicked(View itemView, int position);
+    }
+
+    interface OnAdapterItemLongClickListener {
+        void onItemLongClicked(View itemView, int position);
     }
 
 }
