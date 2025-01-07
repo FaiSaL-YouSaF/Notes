@@ -87,11 +87,6 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public void insertSampleData() {
-//        SQLiteDatabase db = getWritableDatabase();
-//        db.execSQL(INSERT_SAMPLE_DATA);
-//    }
-
     public List<Note> getAllNotes() {
         List<Note> notes = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
@@ -142,7 +137,7 @@ public class DbHelper extends SQLiteOpenHelper {
 //        }
 //    }
 
-    public boolean deleteNote(final int noteId) {
+    public boolean deleteNoteById(final int noteId) {
         SQLiteDatabase db = getWritableDatabase();
         try {
             int numberOfRowsAffected = db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});

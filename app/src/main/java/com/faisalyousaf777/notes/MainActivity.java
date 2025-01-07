@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(NOTE_ID, position);
             startActivity(intent);
         });
+        noteAdapter.setOnAdapterItemLongClickListener((itemView, position) -> {
+
+        });
     }
 
 }

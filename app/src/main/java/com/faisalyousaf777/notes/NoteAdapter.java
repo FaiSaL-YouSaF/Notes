@@ -75,20 +75,24 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(@NonNull View itemView) {
-                    AlertDialog confirmDeleteDialog = new AlertDialog.Builder(itemView.getContext())
-                            .setTitle("Delete Note")
-                            .setMessage("Are you sure you want to delete this note?")
-                            .setPositiveButton("Yes", (dialog, which) -> {
-                                Log.d("NoteAdapter", "onLongClick: Deleting note at position: " + getAdapterPosition());
-                                listOfNotes.remove(getAdapterPosition());
-                                notifyItemRemoved(getAdapterPosition());
-                                notifyItemRangeChanged(getAdapterPosition(), listOfNotes.size());
-                            })
-                            .setNegativeButton("No", (dialog, which) -> {
-                                dialog.dismiss();
-                            })
-                            .create();
-                    confirmDeleteDialog.show();
+                    if (onAdapterItemLongClickListener != null) {
+                        onAdapterItemLongClickListener.onItemLongClicked(itemView, getAdapterPosition());
+                    Log.d("NoteAdapter", "onLongClick: Deleting note at position: " + getAdapterPosition());
+                        AlertDialog alertDialog = new AlertDialog.Builder(itemView.getContext())
+                                .setTitle("Delete Note")
+                                .setMessage("Are you sure you want to delete this note?")
+                                .setPositiveButton("Yes", (dialog, which) -> {
+                                    DbHelper.getInstance(itemView.getContext()).deleteNoteById(listOfNotes.get(getAdapterPosition()).getId());
+                                    listOfNotes.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                    notifyItemRangeChanged(getAdapterPosition(), listOfNotes.size());
+                                })
+                                .setNegativeButton("No", (dialog, which) -> {
+                                    dialog.dismiss();
+                                })
+                                .create();
+                        alertDialog.show();
+                    }
                     return true;
                 }
             });
