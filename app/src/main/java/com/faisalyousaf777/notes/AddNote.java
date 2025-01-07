@@ -1,14 +1,9 @@
 package com.faisalyousaf777.notes;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -40,8 +35,8 @@ public class AddNote extends AppCompatActivity {
             return insets;
         });
 
-        etTitle = findViewById(R.id.etTitle);
-        etContent = findViewById(R.id.etContent);
+        etTitle = findViewById(R.id.etTitleAddNote);
+        etContent = findViewById(R.id.etContentAddNote);
         coordinatorLayoutTopAppBar = findViewById(R.id.coordinatorLayoutTopAppBar);
         topAppBar = findViewById(R.id.topAppBar);
         

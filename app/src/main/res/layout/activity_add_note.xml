@@ -33,7 +33,7 @@
 
     <!--    Title EditText-->
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etTitle"
+        android:id="@+id/etTitleAddNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/et_title_text_size"
@@ -48,7 +48,7 @@
 
     <!--    Content EditText-->
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/etContent"
+        android:id="@+id/etContentAddNote"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:hint="@string/et_content_hint"
@@ -58,7 +58,7 @@
         android:scrollbars="vertical"
         android:padding="@dimen/et_content_padding"
         android:background="@color/et_content_background"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle"
+        app:layout_constraintTop_toBottomOf="@+id/etTitleAddNote"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

@@ -23,7 +23,8 @@ public class EditNote extends AppCompatActivity {
     CoordinatorLayout coordinatorLayoutTopAppBar;
     MaterialToolbar topAppBar;
     DbHelper db;
-    boolean isSaved = false;
+    boolean isUpdated = false;
+    int noteId;
 
     @SuppressWarnings("MissingInflatedId")
     @Override
@@ -37,24 +38,24 @@ public class EditNote extends AppCompatActivity {
             return insets;
         });
 
-        etTitle = findViewById(R.id.etTitle);
-        etContent = findViewById(R.id.etContent);
+        etTitle = findViewById(R.id.etTitleEditNote);
+        etContent = findViewById(R.id.etContentEditNote);
         coordinatorLayoutTopAppBar = findViewById(R.id.coordinatorLayoutTopAppBar);
         topAppBar = findViewById(R.id.topAppBar);
 
         db = DbHelper.getInstance(this);
-        int noteId = getIntent().getIntExtra(NOTE_ID, -1);
+        noteId = getIntent().getIntExtra(NOTE_ID, -1);
         if (noteId != -1) {
             Note note = fetchedNotes.get(noteId);
             etTitle.setText(note.getTitle());
             etContent.setText(note.getContent());
         }
 
-        topAppBar.setNavigationOnClickListener(view -> saveNote());
+        topAppBar.setNavigationOnClickListener(view -> updateNote(noteId));
         topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.btn_done) {
-                saveNote();
-                isSaved = true;
+                updateNote(noteId);
+                isUpdated = true;
                 finish();
             }
             return true;
@@ -64,16 +65,16 @@ public class EditNote extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (!isSaved) {
-            saveNote();
+        if (!isUpdated) {
+            updateNote(noteId);
         }
     }
 
-    public void saveNote() {
+    public void updateNote(int noteId) {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.insertNote(new Note(title, content));
+            db.updateNoteById(noteId, new Note(title, content));
         }
     }
 }

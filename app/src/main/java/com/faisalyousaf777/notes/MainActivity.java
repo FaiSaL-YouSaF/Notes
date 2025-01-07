@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         noteAdapter = new NoteAdapter(fetchedNotes);
         rvNotes.setAdapter(noteAdapter);
         noteAdapter.setOnAdapterItemClickListener((itemView, position) -> {
-            Intent intent = new Intent(MainActivity.this, AddNote.class);
-            intent.putExtra(NOTE_ID, position);
+            Intent intent = new Intent(MainActivity.this, EditNote.class);
+            intent.putExtra(NOTE_ID, fetchedNotes.get(position).getId() - 1);
             startActivity(intent);
         });
         noteAdapter.setOnAdapterItemLongClickListener((itemView, position) -> {
