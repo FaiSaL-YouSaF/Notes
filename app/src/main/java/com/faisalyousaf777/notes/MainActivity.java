@@ -3,7 +3,6 @@ package com.faisalyousaf777.notes;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,9 +36,19 @@ public class MainActivity extends AppCompatActivity {
         rvNotes = findViewById(R.id.rvNotes);
 
         db = DbHelper.getInstance(this);
+        fetchedNotes = db.getAllNotes();
 
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
-        refreshNotes();
+        noteAdapter = new NoteAdapter(fetchedNotes);
+        rvNotes.setAdapter(noteAdapter);
+        noteAdapter.setOnAdapterItemClickListener((itemView, position) -> {
+            Intent intent = new Intent(MainActivity.this, EditNote.class);
+            intent.putExtra(NOTE_ID, position);
+            startActivity(intent);
+        });
+        noteAdapter.setOnAdapterItemLongClickListener((itemView, position) -> {
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(rvNotes, (v, insets) -> {
             Insets insets1 = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(insets1.left, insets1.top, insets1.right, insets1.bottom);
@@ -62,21 +71,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        refreshNotes();
-    }
-
-    void refreshNotes() {
         fetchedNotes = db.getAllNotes();
-        noteAdapter = new NoteAdapter(fetchedNotes);
-        rvNotes.setAdapter(noteAdapter);
-        noteAdapter.setOnAdapterItemClickListener((itemView, position) -> {
-            Intent intent = new Intent(MainActivity.this, EditNote.class);
-            intent.putExtra(NOTE_ID, fetchedNotes.get(position).getId() - 1);
-            startActivity(intent);
-        });
-        noteAdapter.setOnAdapterItemLongClickListener((itemView, position) -> {
-
-        });
+        noteAdapter.setListOfNotes(fetchedNotes);
+        noteAdapter.notifyItemChanged(fetchedNotes.size());
     }
-
 }

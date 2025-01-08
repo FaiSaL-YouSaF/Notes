@@ -6,6 +6,7 @@ import static com.faisalyousaf777.notes.MainActivity.fetchedNotes;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -23,7 +24,7 @@ public class EditNote extends AppCompatActivity {
     CoordinatorLayout coordinatorLayoutTopAppBar;
     MaterialToolbar topAppBar;
     DbHelper db;
-    boolean isUpdated = false;
+    boolean isUpdated;
     int noteId;
 
     @SuppressWarnings("MissingInflatedId")
@@ -43,6 +44,7 @@ public class EditNote extends AppCompatActivity {
         coordinatorLayoutTopAppBar = findViewById(R.id.coordinatorLayoutTopAppBar);
         topAppBar = findViewById(R.id.topAppBar);
 
+        isUpdated = false;
         db = DbHelper.getInstance(this);
         noteId = getIntent().getIntExtra(NOTE_ID, -1);
         if (noteId != -1) {
@@ -51,30 +53,38 @@ public class EditNote extends AppCompatActivity {
             etContent.setText(note.getContent());
         }
 
-        topAppBar.setNavigationOnClickListener(view -> updateNote(noteId));
+        topAppBar.setNavigationOnClickListener(view -> {
+            if (!isUpdated) {
+                showDiscardDialog();
+            } else {
+                finish();
+            }
+        });
         topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.btn_done) {
                 updateNote(noteId);
-                isUpdated = true;
                 finish();
             }
             return true;
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (!isUpdated) {
-            updateNote(noteId);
-        }
-    }
-
     public void updateNote(int noteId) {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.updateNoteById(noteId, new Note(title, content));
+            db.updateNoteById(noteId + 1, new Note(title, content));
+            isUpdated = true;
         }
+    }
+
+    private void showDiscardDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Discard Changes?")
+                .setMessage("Are you sure you want to discard the changes?")
+                .setPositiveButton("Yes", (dialog, which) -> finish())
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .create();
+        alertDialog.show();
     }
 }

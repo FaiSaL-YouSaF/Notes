@@ -32,7 +32,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     public void setListOfNotes(List<Note> listOfNotes) {
         this.listOfNotes = listOfNotes;
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     @NonNull
