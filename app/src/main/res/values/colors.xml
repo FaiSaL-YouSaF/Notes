@@ -3,5 +3,4 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="note_view_holder_background">#FFD3D3D3</color>
-    <color name="et_content_background">#FFD3D3D3</color>
 </resources>
