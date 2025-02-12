@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements OnAdapterItemClic
         topAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.btn_add) {
                 Intent intent = new Intent(MainActivity.this, AddNote.class);
-                startActivity(intent);
+                addNoteLauncher.launch(intent);
             } else if (item.getItemId() == R.id.btn_edit) {
                 Toast.makeText(this, "Edit will be available soon", Toast.LENGTH_SHORT).show();
             } else if (item.getItemId() == R.id.btn_search) {
@@ -64,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements OnAdapterItemClic
             return false;
         });
     }
+
+    ActivityResultLauncher<Intent> addNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        if (result != null && result.getResultCode() == RESULT_OK) {
+            fetchedNotes = db.getAllNotes();
+            refreshAdapter();
+        }
+    });
 
     ActivityResultLauncher<Intent> editNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result != null && result.getResultCode() == RESULT_OK) {

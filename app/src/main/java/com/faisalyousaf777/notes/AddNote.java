@@ -66,6 +66,7 @@ public class AddNote extends AppCompatActivity {
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
             db.insertNote(new Note(title, content));
+            setResult(RESULT_OK);
         }
     }
     
