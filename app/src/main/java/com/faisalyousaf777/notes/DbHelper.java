@@ -89,7 +89,22 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean updateNoteById(final int noteId, final Note note) {
+    public Note getNoteById(final int noteId) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
+        if (cursor.moveToFirst()) {
+            String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+            String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
+            cursor.close();
+            db.close();
+            return new Note(noteId, title, content);
+        }
+        cursor.close();
+        db.close();
+        return null;
+    }
+
+    public void updateNoteById(final int noteId, final Note note) {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -97,11 +112,9 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_CONTENT, note.getContent());
         try {
             int numberOfRowsAffected = db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
-            return numberOfRowsAffected > 0;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error: " + e.getMessage());
-            return false;
         }
     }
 

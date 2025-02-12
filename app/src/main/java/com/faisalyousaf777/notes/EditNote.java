@@ -1,7 +1,6 @@
 package com.faisalyousaf777.notes;
 
 import static com.faisalyousaf777.notes.MainActivity.NOTE_ID;
-import static com.faisalyousaf777.notes.MainActivity.fetchedNotes;
 
 import android.os.Bundle;
 
@@ -48,7 +47,7 @@ public class EditNote extends AppCompatActivity {
         db = DbHelper.getInstance(this);
         noteId = getIntent().getIntExtra(NOTE_ID, -1);
         if (noteId != -1) {
-            Note note = fetchedNotes.get(noteId);
+            Note note = db.getNoteById(noteId);
             etTitle.setText(note.getTitle());
             etContent.setText(note.getContent());
         }
@@ -73,7 +72,8 @@ public class EditNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.updateNoteById(noteId + 1, new Note(title, content));
+            db.updateNoteById(noteId, new Note(title, content));
+            setResult(RESULT_OK);
             isUpdated = true;
         }
     }
