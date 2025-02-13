@@ -1,6 +1,6 @@
 package com.faisalyousaf777.notes;
 
-import static com.faisalyousaf777.notes.MainActivity.NOTE_ID;
+import static com.faisalyousaf777.notes.fragment.content.NotesFragment.NOTE_ID;
 
 import android.os.Bundle;
 
@@ -40,7 +40,7 @@ public class EditNote extends AppCompatActivity {
 
         etTitle = findViewById(R.id.etTitleEditNote);
         etContent = findViewById(R.id.etContentEditNote);
-        coordinatorLayoutTopAppBar = findViewById(R.id.coordinatorLayoutTopAppBar);
+        coordinatorLayoutTopAppBar = findViewById(R.id.toolbarLayout);
         topAppBar = findViewById(R.id.topAppBar);
 
         isUpdated = false;
@@ -79,12 +79,7 @@ public class EditNote extends AppCompatActivity {
     }
 
     private void showDiscardDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("Discard Changes?")
-                .setMessage("Are you sure you want to discard the changes?")
-                .setPositiveButton("Yes", (dialog, which) -> finish())
-                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
-                .create();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle("Discard Changes?").setMessage("Are you sure you want to discard the changes?").setPositiveButton("Yes", (dialog, which) -> finish()).setNegativeButton("No", (dialog, which) -> dialog.dismiss()).create();
         alertDialog.show();
     }
 }

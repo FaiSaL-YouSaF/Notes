@@ -37,7 +37,7 @@ public class AddNote extends AppCompatActivity {
 
         etTitle = findViewById(R.id.etTitleAddNote);
         etContent = findViewById(R.id.etContentAddNote);
-        coordinatorLayoutTopAppBar = findViewById(R.id.coordinatorLayoutTopAppBar);
+        coordinatorLayoutTopAppBar = findViewById(R.id.toolbarLayout);
         topAppBar = findViewById(R.id.topAppBar);
         
         db = DbHelper.getInstance(this);
