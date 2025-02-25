@@ -16,18 +16,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.faisalyousaf777.notes.AddNote;
 import com.faisalyousaf777.notes.DbHelper;
 import com.faisalyousaf777.notes.EditNote;
 import com.faisalyousaf777.notes.Note;
 import com.faisalyousaf777.notes.NoteAdapter;
 import com.faisalyousaf777.notes.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 
 public class NotesFragment extends Fragment implements OnAdapterItemClickListener {
 
+    private FloatingActionButton addNoteFab;
     public static final String NOTE_ID = "note_id";
     private RecyclerView notesRecyclerView;
     private NoteAdapter noteAdapter;
@@ -52,12 +55,15 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         if (getArguments() != null) {
+            addNoteFab = view.findViewById(R.id.addNoteFab);
+            addNoteFab.setOnClickListener(v -> {
+                Intent intent = new Intent(getContext(), AddNote.class);
+                addNoteLauncher.launch(intent);
+            });
             notesRecyclerView = view.findViewById(R.id.notesRecyclerView);
             db = DbHelper.getInstance(getContext());
-            fetchedNotes = db.getAllNotes();
-
             notesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            notesRecyclerView.setAdapter(new NoteAdapter(db.getAllNotes(), this));
+            refreshNotes();
         }
         return view;
     }
@@ -77,7 +83,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
                 .setPositiveButton("Yes", ((dialog, which) -> {
                     db.deleteNoteById(fetchedNotes.get(position).getId());
                     fetchedNotes.remove(position);
-                    noteAdapter.notifyItemRemoved(position);
+                    refreshNotes();
                     dialog.dismiss();
                 }))
                 .setNegativeButton("No", ((dialog, which) -> dialog.dismiss()))
@@ -85,13 +91,27 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
         alertDialog.show();
     }
 
+    private final ActivityResultLauncher<Intent> addNoteLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    refreshNotes();
+                }
+            }
+    );
+
     private final ActivityResultLauncher<Intent> editNoteLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    fetchedNotes.clear();
-                    fetchedNotes.addAll(db.getAllNotes());
+                    refreshNotes();
                 }
             }
     );
+
+    private void refreshNotes() {
+        fetchedNotes = db.getAllNotes();
+        noteAdapter = new NoteAdapter(fetchedNotes, this);
+        notesRecyclerView.setAdapter(noteAdapter);
+    }
 }
