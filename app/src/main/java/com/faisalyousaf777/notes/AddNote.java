@@ -22,6 +22,7 @@ public class AddNote extends AppCompatActivity {
     MaterialToolbar topAppBar;
     DbHelper db;
     boolean isSaved = false;
+    boolean isFavorite = false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,10 +45,14 @@ public class AddNote extends AppCompatActivity {
         
         topAppBar.setNavigationOnClickListener(view -> saveNote());
         topAppBar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.btn_done) {
+            if (item.getItemId() == R.id.btnDone) {
                 saveNote();
                 isSaved = true;
                 finish();
+            } else if (item.getItemId() == R.id.btnFavorite) {
+                isFavorite = !isFavorite;
+                item.setChecked(isFavorite);
+                item.setIcon(isFavorite ? R.drawable.baseline_star_24 : R.drawable.outline_star_border_24);
             }
             return true;
         });
@@ -65,7 +70,7 @@ public class AddNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.insertNote(new Note(title, content));
+            db.insertNote(new Note(title, content, isFavorite));
             setResult(RESULT_OK);
         }
     }

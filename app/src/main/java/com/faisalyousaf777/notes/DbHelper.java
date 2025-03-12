@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -20,8 +21,9 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_CONTENT = "content";
+    public static final String COLUMN_IS_FAVORITE = "is_favorite";
 
-    public static final String CREATE_TABLE = String.format("CREATE TABLE IF NOT EXISTS %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT)", TABLE_NAME, COLUMN_ID, COLUMN_TITLE, COLUMN_CONTENT);
+    public static final String CREATE_TABLE = String.format("CREATE TABLE IF NOT EXISTS %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s INTEGER)", TABLE_NAME, COLUMN_ID, COLUMN_TITLE, COLUMN_CONTENT, COLUMN_IS_FAVORITE);
     public static final String DROP_TABLE = String.format("DROP TABLE IF EXISTS %s", TABLE_NAME);
     public static final String SELECT_ALL = String.format("SELECT * FROM %s", TABLE_NAME);
 //    public static final String SELECT_BY_ID = String.format("SELECT * FROM %s WHERE %s = ?", TABLE_NAME, COLUMN_ID);
@@ -65,7 +67,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
                 String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
                 String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
-                notes.add(new Note(id, title, content));
+                int isFavorite = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_FAVORITE));
+                notes.add(new Note(id, title, content, isFavorite == 1));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -79,12 +82,12 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_TITLE, note.getTitle());
         contentValues.put(COLUMN_CONTENT, note.getContent());
+        contentValues.put(COLUMN_IS_FAVORITE, note.isFavorite() ? 1 : 0);
         try {
             long noOfRowsAffected = db.insert(TABLE_NAME, null, contentValues);
             return noOfRowsAffected != -1;
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
+            Log.d("InsertNote", "insertNote: failed to insert note" + e.getMessage());
             return false;
         }
     }
@@ -95,9 +98,10 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
             String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
+            int isFavorite = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_FAVORITE));
             cursor.close();
             db.close();
-            return new Note(noteId, title, content);
+            return new Note(noteId, title, content, isFavorite == 1);
         }
         cursor.close();
         db.close();
@@ -110,11 +114,11 @@ public class DbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_TITLE, note.getTitle());
         contentValues.put(COLUMN_CONTENT, note.getContent());
+        contentValues.put(COLUMN_IS_FAVORITE, note.isFavorite() ? 1 : 0);
         try {
             int numberOfRowsAffected = db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
+            Log.d("UpdateNote", "updateNoteById: failed to update note" + e.getMessage());
         }
     }
 
@@ -124,9 +128,40 @@ public class DbHelper extends SQLiteOpenHelper {
             int numberOfRowsAffected = db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
             return numberOfRowsAffected > 0;
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
+            Log.d("DeleteNote", "deleteNoteById: failed to delete note" + e.getMessage());
             return false;
         }
     }
+
+    public void markNoteAsFavorite(final int noteId, final boolean isFavorite) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_IS_FAVORITE, isFavorite ? 1 : 0);
+        try {
+            int numberOfRowsAffected = db.update(TABLE_NAME, contentValues, COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
+        } catch (final Exception ex) {
+            Log.d("UpdateNote", "markNoteAsFavorite: failed to update note");
+        }
+        db.close();
+    }
+
+    public List<Note> getFavoriteNotes() {
+        List<Note> favoriteNotes = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, null, COLUMN_IS_FAVORITE + " = ?", new String[]{String.valueOf(1)}, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int noteId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+                String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
+                boolean isFavorite = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_FAVORITE)) == 1;
+
+                favoriteNotes.add(new Note(noteId, title, content, isFavorite));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return favoriteNotes;
+    }
+
 }

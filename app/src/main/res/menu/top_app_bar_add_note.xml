@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btn_done"
+        android:id="@+id/btnFavorite"
+        android:title="@string/title_btn_favorite"
+        android:contentDescription="@string/description_btn_favorite"
+        android:icon="@drawable/outline_star_border_24"
+        android:checkable="true"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/btnDone"
         android:title="@string/title_btn_done"
         android:icon="@drawable/baseline_done_24"
         android:contentDescription="@string/description_btn_done"

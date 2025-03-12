@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,28 +8,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.faisalyousaf777.notes.Note;
+import com.faisalyousaf777.notes.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.R;
+
 import java.util.List;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder> {
 
-    private final List<Note> listOfNotes;
+    private final List<Note> favoriteNotes;
     private final OnAdapterItemClickListener onAdapterItemClickListener;
 
-    public NoteAdapter(List<Note> listOfNotes, OnAdapterItemClickListener onAdapterItemClickListener) {
-        this.listOfNotes = listOfNotes;
+    public FavoritesAdapter(List<Note> favoriteNotes, OnAdapterItemClickListener onAdapterItemClickListener) {
+        this.favoriteNotes = favoriteNotes;
         this.onAdapterItemClickListener = onAdapterItemClickListener;
     }
 
     @NonNull
     @Override
-    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_holder, parent, false);
-        return new NoteViewHolder(rootView);
+    public FavoritesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_holder, parent, false);
+        return new FavoritesViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
-        Note note = listOfNotes.get(position);
+    public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
+        Note note = favoriteNotes.get(position);
         holder.tvTitle.setText(note.getTitle());
         holder.tvContent.setText(note.getContent());
 
@@ -51,24 +55,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
     @Override
     public int getItemCount() {
-        return listOfNotes.size();
+        return favoriteNotes.size();
     }
 
-//    public void removeItem(int position) {
-//        listOfNotes.remove(position);
-//        notifyItemRemoved(position);
-//    }
-
-//    public void restoreItem(Note note, int position) {
-//        listOfNotes.add(position, note);
-//        notifyItemInserted(position);
-//    }
-
-    public static class NoteViewHolder extends RecyclerView.ViewHolder {
+    public static class FavoritesViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle, tvContent;
 
-        public NoteViewHolder(@NonNull View itemView) {
+        public FavoritesViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);

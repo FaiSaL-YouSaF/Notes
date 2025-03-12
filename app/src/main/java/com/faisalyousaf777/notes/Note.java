@@ -5,6 +5,7 @@ public class Note {
     private int id;
     private String title;
     private String content;
+    private boolean isFavorite;
 
     public Note() {
     }
@@ -14,10 +15,23 @@ public class Note {
         this.content = content;
     }
 
+    public Note(String title, String content, boolean isFavorite) {
+        this.title = title;
+        this.content = content;
+        this.isFavorite = isFavorite;
+    }
+
     public Note(int id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+    public Note(int id, String title, String content, boolean isFavorite) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.isFavorite = isFavorite;
     }
 
     public int getId() {
@@ -42,5 +56,13 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 }

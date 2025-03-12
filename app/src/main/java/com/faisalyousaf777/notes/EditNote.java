@@ -25,6 +25,7 @@ public class EditNote extends AppCompatActivity {
     DbHelper db;
     boolean isUpdated;
     int noteId;
+    boolean isFavorite;
 
     @SuppressWarnings("MissingInflatedId")
     @Override
@@ -50,6 +51,7 @@ public class EditNote extends AppCompatActivity {
             Note note = db.getNoteById(noteId);
             etTitle.setText(note.getTitle());
             etContent.setText(note.getContent());
+            isFavorite = note.isFavorite();
         }
 
         topAppBar.setNavigationOnClickListener(view -> {
@@ -60,9 +62,13 @@ public class EditNote extends AppCompatActivity {
             }
         });
         topAppBar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.btn_done) {
+            if (item.getItemId() == R.id.btnDone) {
                 updateNote(noteId);
                 finish();
+            } else if (item.getItemId() == R.id.btnFavorite) {
+                isFavorite = !isFavorite;
+                item.setChecked(isFavorite);
+                item.setIcon(isFavorite ? R.drawable.baseline_star_24 : R.drawable.outline_star_border_24);
             }
             return true;
         });
@@ -72,14 +78,19 @@ public class EditNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.updateNoteById(noteId, new Note(title, content));
+            db.updateNoteById(noteId, new Note(title, content, isFavorite));
             setResult(RESULT_OK);
             isUpdated = true;
         }
     }
 
     private void showDiscardDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle("Discard Changes?").setMessage("Are you sure you want to discard the changes?").setPositiveButton("Yes", (dialog, which) -> finish()).setNegativeButton("No", (dialog, which) -> dialog.dismiss()).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Discard Changes?")
+                .setMessage("Are you sure you want to discard the changes?")
+                .setPositiveButton("Yes", (dialog, which) -> finish())
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .create();
         alertDialog.show();
     }
 }
