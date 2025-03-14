@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.faisalyousaf777.notes.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.R;
+import com.faisalyousaf777.notes.entity.Note;
 
 import java.util.List;
 

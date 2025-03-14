@@ -17,12 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.faisalyousaf777.notes.DbHelper;
 import com.faisalyousaf777.notes.EditNote;
-import com.faisalyousaf777.notes.Note;
+import com.faisalyousaf777.notes.entity.Note;
 import com.faisalyousaf777.notes.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
 import com.faisalyousaf777.notes.adapter.FavoritesAdapter;
+import com.faisalyousaf777.notes.dao.NotesDAO;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class FavoritesFragment extends Fragment implements OnAdapterItemClickLis
     private RecyclerView favoritesRecyclerView;
     private FavoritesAdapter favoritesAdapter;
     private List<Note> favoriteNotes;
-    private DbHelper db;
+    private NotesDAO notesDAO;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -54,7 +54,7 @@ public class FavoritesFragment extends Fragment implements OnAdapterItemClickLis
         if (getArguments() != null) {
             favoritesRecyclerView = view.findViewById(R.id.favoritesRecyclerView);
             favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            db = DbHelper.getInstance(getContext());
+            notesDAO = new NotesDAO(getContext());
             refreshNotes();
         }
         return view;
@@ -73,7 +73,7 @@ public class FavoritesFragment extends Fragment implements OnAdapterItemClickLis
                 .setTitle("Delete Note")
                 .setMessage("Are you sure you want to delete this note?")
                 .setPositiveButton("Yes", ((dialog, which) -> {
-                    db.deleteNoteById(favoriteNotes.get(position).getId());
+                    notesDAO.deleteNoteById(favoriteNotes.get(position).getId());
                     favoriteNotes.remove(position);
                     refreshNotes();
                     dialog.dismiss();
@@ -93,7 +93,7 @@ public class FavoritesFragment extends Fragment implements OnAdapterItemClickLis
     );
 
     public void refreshNotes() {
-        favoriteNotes = db.getFavoriteNotes();
+        favoriteNotes = notesDAO.getFavoriteNotes();
         favoritesAdapter = new FavoritesAdapter(favoriteNotes, this);
         favoritesRecyclerView.setAdapter(favoritesAdapter);
     }

@@ -13,8 +13,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.faisalyousaf777.notes.dao.NotesDAO;
+import com.faisalyousaf777.notes.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class EditNote extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class EditNote extends AppCompatActivity {
     AppCompatEditText etTitle, etContent;
     CoordinatorLayout coordinatorLayoutTopAppBar;
     MaterialToolbar topAppBar;
-    DbHelper db;
+    private NotesDAO notesDAO;
     boolean isUpdated;
     int noteId;
     boolean isFavorite;
@@ -45,10 +48,10 @@ public class EditNote extends AppCompatActivity {
         topAppBar = findViewById(R.id.topAppBar);
 
         isUpdated = false;
-        db = DbHelper.getInstance(this);
+        notesDAO = new NotesDAO(this);
         noteId = getIntent().getIntExtra(NOTE_ID, -1);
         if (noteId != -1) {
-            Note note = db.getNoteById(noteId);
+            Note note = notesDAO.getNoteById(noteId);
             etTitle.setText(note.getTitle());
             etContent.setText(note.getContent());
             isFavorite = note.isFavorite();
@@ -78,7 +81,12 @@ public class EditNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.updateNoteById(noteId, new Note(title, content, isFavorite));
+            notesDAO.updateNoteById(noteId, new Note.Builder()
+                    .setTitle(title)
+                    .setContent(content)
+                    .setIsFavorite(isFavorite)
+                    .setUpdatedAt(LocalDateTime.now())
+                    .build());
             setResult(RESULT_OK);
             isUpdated = true;
         }

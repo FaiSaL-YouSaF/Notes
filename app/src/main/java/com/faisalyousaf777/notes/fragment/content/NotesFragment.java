@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faisalyousaf777.notes.AddNote;
-import com.faisalyousaf777.notes.DbHelper;
 import com.faisalyousaf777.notes.EditNote;
-import com.faisalyousaf777.notes.Note;
-import com.faisalyousaf777.notes.NoteAdapter;
+import com.faisalyousaf777.notes.entity.Note;
+import com.faisalyousaf777.notes.adapter.NoteAdapter;
 import com.faisalyousaf777.notes.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
+import com.faisalyousaf777.notes.dao.NotesDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -30,11 +30,11 @@ import java.util.List;
 
 public class NotesFragment extends Fragment implements OnAdapterItemClickListener {
 
-    private FloatingActionButton addNoteFab;
+    private FloatingActionButton addNoteFAB;
     public static final String NOTE_ID = "note_id";
     private RecyclerView notesRecyclerView;
     private NoteAdapter noteAdapter;
-    private DbHelper db;
+    private NotesDAO notesDAO;
     private List<Note> fetchedNotes;
 
     public NotesFragment() {
@@ -55,13 +55,13 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         if (getArguments() != null) {
-            addNoteFab = view.findViewById(R.id.addNoteFab);
-            addNoteFab.setOnClickListener(v -> {
+            addNoteFAB = view.findViewById(R.id.addNoteFAB);
+            addNoteFAB.setOnClickListener(v -> {
                 Intent intent = new Intent(getContext(), AddNote.class);
                 addNoteLauncher.launch(intent);
             });
             notesRecyclerView = view.findViewById(R.id.notesRecyclerView);
-            db = DbHelper.getInstance(getContext());
+            notesDAO = new NotesDAO(getContext());
             notesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             refreshNotes();
         }
@@ -81,7 +81,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
                 .setTitle("Delete Note")
                 .setMessage("Are you sure you want to delete this note?")
                 .setPositiveButton("Yes", ((dialog, which) -> {
-                    db.deleteNoteById(fetchedNotes.get(position).getId());
+                    notesDAO.deleteNoteById(fetchedNotes.get(position).getId());
                     fetchedNotes.remove(position);
                     refreshNotes();
                     dialog.dismiss();
@@ -110,7 +110,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
     );
 
     private void refreshNotes() {
-        fetchedNotes = db.getAllNotes();
+        fetchedNotes = notesDAO.getAllNotes();
         noteAdapter = new NoteAdapter(fetchedNotes, this);
         notesRecyclerView.setAdapter(noteAdapter);
     }

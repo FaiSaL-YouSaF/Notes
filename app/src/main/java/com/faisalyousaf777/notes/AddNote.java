@@ -11,8 +11,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.faisalyousaf777.notes.dao.NotesDAO;
+import com.faisalyousaf777.notes.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class AddNote extends AppCompatActivity {
@@ -20,7 +23,7 @@ public class AddNote extends AppCompatActivity {
     AppCompatEditText etTitle, etContent;
     CoordinatorLayout coordinatorLayoutTopAppBar;
     MaterialToolbar topAppBar;
-    DbHelper db;
+    private NotesDAO notesDAO;
     boolean isSaved = false;
     boolean isFavorite = false;
 
@@ -41,7 +44,7 @@ public class AddNote extends AppCompatActivity {
         coordinatorLayoutTopAppBar = findViewById(R.id.toolbarLayout);
         topAppBar = findViewById(R.id.topAppBar);
         
-        db = DbHelper.getInstance(this);
+        notesDAO = new NotesDAO(this);
         
         topAppBar.setNavigationOnClickListener(view -> saveNote());
         topAppBar.setOnMenuItemClickListener(item -> {
@@ -70,7 +73,7 @@ public class AddNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            db.insertNote(new Note(title, content, isFavorite));
+            notesDAO.insertNote(new Note.Builder().setTitle(title).setContent(content).setIsFavorite(isFavorite).setCreatedAt(LocalDateTime.now()).build());
             setResult(RESULT_OK);
         }
     }

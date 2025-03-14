@@ -27,4 +27,6 @@
     <string name="title_btn_favorite">Add to Favorites</string>
     <string name="description_btn_favorite">Add to favorites</string>
 
+    <string name="description_btn_add_category">Add new category button</string>
+
 </resources>

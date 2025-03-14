@@ -3,39 +3,39 @@ package com.faisalyousaf777.notes.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.faisalyousaf777.notes.entity.Category;
 import com.faisalyousaf777.notes.entity.Note;
 import com.faisalyousaf777.notes.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
 
 import java.util.List;
 
-public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder> {
+public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder> {
 
-    private final List<Note> favoriteNotes;
+    private final List<Category> categories;
     private final OnAdapterItemClickListener onAdapterItemClickListener;
 
-    public FavoritesAdapter(List<Note> favoriteNotes, OnAdapterItemClickListener onAdapterItemClickListener) {
-        this.favoriteNotes = favoriteNotes;
+    public CategoriesAdapter(List<Category> categories, OnAdapterItemClickListener onAdapterItemClickListener) {
+        this.categories = categories;
         this.onAdapterItemClickListener = onAdapterItemClickListener;
     }
 
     @NonNull
     @Override
-    public FavoritesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_holder, parent, false);
-        return new FavoritesViewHolder(itemView);
+    public CategoriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_view_holder, parent, false);
+        return new CategoriesViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoritesViewHolder holder, int position) {
-        Note note = favoriteNotes.get(position);
-        holder.tvTitle.setText(note.getTitle());
-        holder.tvContent.setText(note.getContent());
+    public void onBindViewHolder(@NonNull CategoriesViewHolder holder, int position) {
+        Category category = categories.get(position);
+        holder.tvCategory.setText(category.getName());
 
         // Adapter item click listener
         holder.itemView.setOnClickListener(v -> {
@@ -55,17 +55,16 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
 
     @Override
     public int getItemCount() {
-        return favoriteNotes.size();
+        return categories.size();
     }
 
-    public static class FavoritesViewHolder extends RecyclerView.ViewHolder {
+    public static class CategoriesViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTitle, tvContent;
+        AppCompatTextView tvCategory;
 
-        public FavoritesViewHolder(@NonNull View itemView) {
+        public CategoriesViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvContent = itemView.findViewById(R.id.tvContent);
+            tvCategory = itemView.findViewById(R.id.tvCategory);
         }
     }
 }
