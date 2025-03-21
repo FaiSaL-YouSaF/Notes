@@ -13,6 +13,7 @@ import com.faisalyousaf777.notes.DbHelper;
 import com.faisalyousaf777.notes.entity.Note;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class NotesDAO {
                         .setIsFavorite(isFavorite)
                         .setCategory(category)
                         .setColorCode(colorCode)
-                        .setCreatedAt(LocalDateTime.parse(createdAt))
-                        .setUpdatedAt(LocalDateTime.parse(updatedAt))
+                        .setCreatedAt(createdAt != null ? LocalDateTime.parse(createdAt) : null)
+                        .setUpdatedAt(updatedAt != null ? LocalDateTime.parse(updatedAt) : null)
                         .build());
             } while (cursor.moveToNext());
         }
@@ -67,7 +68,6 @@ public class NotesDAO {
         contentValues.put(COLUMN_CATEGORY, note.getCategory());
         contentValues.put(COLUMN_COLOR_CODE, note.getColorCode());
         contentValues.put(COLUMN_CREATED_AT, note.getCreatedAt().toString());
-        contentValues.put(COLUMN_UPDATED_AT, note.getUpdatedAt().toString());
         try {
             long noOfRowsAffected = db.insert(TABLE_NOTES, null, contentValues);
             return noOfRowsAffected != -1;
@@ -97,8 +97,8 @@ public class NotesDAO {
                     .setContent(content)
                     .setIsFavorite(isFavorite)
                     .setCategory(category)
-                    .setCreatedAt(LocalDateTime.parse(createdAt))
-                    .setUpdatedAt(LocalDateTime.parse(updatedAt))
+                    .setCreatedAt(createdAt != null ? LocalDateTime.parse(createdAt) : null)
+                    .setUpdatedAt(updatedAt != null ? LocalDateTime.parse(updatedAt) : null)
                     .setColorCode(colorCode)
                     .build();
         }
@@ -172,8 +172,8 @@ public class NotesDAO {
                         .setIsFavorite(isFavorite)
                         .setCategory(category)
                         .setColorCode(colorCode)
-                        .setCreatedAt(LocalDateTime.parse(createdAt))
-                        .setUpdatedAt(LocalDateTime.parse(updatedAt))
+                        .setCreatedAt(createdAt != null ? LocalDateTime.parse(createdAt) : null)
+                        .setUpdatedAt(updatedAt != null ? LocalDateTime.parse(updatedAt) : null)
                         .build());
             } while (cursor.moveToNext());
         }
@@ -203,8 +203,8 @@ public class NotesDAO {
                         .setIsFavorite(isFavorite)
                         .setCategory(category)
                         .setColorCode(colorCode)
-                        .setCreatedAt(LocalDateTime.parse(createdAt))
-                        .setUpdatedAt(LocalDateTime.parse(updatedAt))
+                        .setCreatedAt(createdAt != null ? LocalDateTime.parse(createdAt) : null)
+                        .setUpdatedAt(updatedAt != null ? LocalDateTime.parse(updatedAt) : null)
                         .build());
             } while (cursor.moveToNext());
         }

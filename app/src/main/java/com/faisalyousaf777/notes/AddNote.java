@@ -73,7 +73,12 @@ public class AddNote extends AppCompatActivity {
         String title = Objects.requireNonNull(etTitle.getText()).toString().trim();
         String content = Objects.requireNonNull(etContent.getText()).toString().trim();
         if (!title.isBlank() || !content.isBlank()) {
-            notesDAO.insertNote(new Note.Builder().setTitle(title).setContent(content).setIsFavorite(isFavorite).setCreatedAt(LocalDateTime.now()).build());
+            notesDAO.insertNote(new Note.Builder()
+                    .setTitle(title)
+                    .setContent(content)
+                    .setIsFavorite(isFavorite)
+                    .setCreatedAt(LocalDateTime.now())
+                    .build());
             setResult(RESULT_OK);
         }
     }

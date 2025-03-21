@@ -56,9 +56,9 @@ public class CategoryDAO {
         return result > 0;
     }
 
-    public boolean deleteCategory(final Category category) {
+    public boolean deleteCategory(final int categoryId) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int result = db.delete(TABLE_CATEGORIES, COLUMN_ID + " = ?", new String[]{String.valueOf(category.getCategoryId())});
+        int result = db.delete(TABLE_CATEGORIES, COLUMN_ID + " = ?", new String[]{String.valueOf(categoryId)});
         db.close();
         return result > 0;
     }
