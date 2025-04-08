@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.faisalyousaf777.notes"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.faisalyousaf777.notes"
         minSdk = 27
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -41,6 +41,8 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     // LiveData
     implementation(libs.lifecycle.livedata.ktx)
+    //preference
+    implementation(libs.preference.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

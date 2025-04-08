@@ -2,8 +2,12 @@ package com.faisalyousaf777.notes;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -11,11 +15,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.faisalyousaf777.notes.dao.CategoryDAO;
 import com.faisalyousaf777.notes.dao.NotesDAO;
+import com.faisalyousaf777.notes.entity.Category;
 import com.faisalyousaf777.notes.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class AddNote extends AppCompatActivity {
@@ -24,6 +31,7 @@ public class AddNote extends AppCompatActivity {
     CoordinatorLayout coordinatorLayoutTopAppBar;
     MaterialToolbar topAppBar;
     private NotesDAO notesDAO;
+    private CategoryDAO categoryDAO;
     boolean isSaved = false;
     boolean isFavorite = false;
 
@@ -56,6 +64,8 @@ public class AddNote extends AppCompatActivity {
                 isFavorite = !isFavorite;
                 item.setChecked(isFavorite);
                 item.setIcon(isFavorite ? R.drawable.baseline_star_24 : R.drawable.outline_star_border_24);
+            } else if (item.getItemId() == R.id.btnCategory) {
+                showCategoryDialog();
             }
             return true;
         });
@@ -81,6 +91,30 @@ public class AddNote extends AppCompatActivity {
                     .build());
             setResult(RESULT_OK);
         }
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private void showCategoryDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_category, null);
+        builder.setView(dialogView)
+                .setTitle("Select Category")
+                .setPositiveButton("OK", (dialog, id) -> {
+                    Spinner spinner = dialogView.findViewById(R.id.categorySpinner);
+                    categoryDAO = new CategoryDAO(this);
+                    List<Category> categories = categoryDAO.getAllCategories();
+                    String[] categoryNames = new String[categories.size()];
+                    for (int i = 0; i < categories.size(); i++) {
+                        categoryNames[i] = categories.get(i).getName();
+                    }
+                    spinner.setAutofillHints(categoryNames);
+                    String selectedCategory = spinner.getSelectedItem().toString();
+                    // Handle the selected category
+                    // For example, you can save it to the note or perform any other action
+                })
+                .setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+        builder.create().show();
     }
     
 }

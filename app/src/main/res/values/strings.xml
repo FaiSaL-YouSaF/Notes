@@ -12,6 +12,12 @@
     <!--    Menu add note-->
     <string name="title_btn_done">Done</string>
     <string name="description_btn_done">Button to save note</string>
+    <string name="title_btn_delete">Delete</string>
+    <string name="description_btn_delete">Button to delete note</string>
+    <string name="title_btn_category">Category</string>
+    <string name="description_btn_category">Button to add category</string>
+    <string name="title_btn_color">Color</string>
+    <string name="description_btn_color">Button to change color</string>
 
     <!--    EditText hints-->
     <string name="et_title_hint">Input Title</string>
@@ -28,5 +34,44 @@
     <string name="description_btn_favorite">Add to favorites</string>
 
     <string name="description_btn_add_category">Add new category button</string>
+
+
+    //    <!--    Settings-->
+    <string name="appearance_settings_title">Appearance Settings</string>
+    <string name="appearance_settings_description">Customize the appearance of the app.</string>
+    <string name="theme_preference_title">Theme</string>
+    <string name="theme_preference_summary">Choose a theme for the app.</string>
+    <string name="theme_preference_key">theme_preference_key</string>
+    <string name="theme_default_value">default</string>
+    <string name="font_style_preference">Font Style</string>
+    <string name="font_style_preference_summary">Choose a font style for the app.</string>
+    <string name="text_size_preference">Text Size</string>
+    <string name="text_size_preference_summary">Adjust the default text size for notes.</string>
+    <string name="text_size_preference_key">text_size_preference_key</string>
+    <string name="default_color_preference">Default Note Color</string>
+    <string name="default_color_preference_summary">Choose a default color for new notes.</string>
+    <string name="default_color_preference_key">default_color_preference_key</string>
+    <string name="default_category_preference">Default Category</string>
+    <string name="default_category_preference_summary">Set a default category for new notes.</string>
+    <string name="default_category_preference_key">default_category_preference_key</string>
+    <string name="sort_order_preference">Sort Order</string>
+    <string name="sort_order_preference_summary">Choose how to sort your notes.</string>
+    <string name="sort_order_preference_key">sort_order_preference_key</string>
+    <string name="sort_order_preference_default">default</string>
+    <string name="sort_order_preference_ascending">Ascending</string>
+    <string name="sort_order_preference_descending">Descending</string>
+    <string name="sort_order_preference_alphabetical">Alphabetical</string>
+    <string name="sort_order_preference_recent">Most Recent</string>
+    <string name="sort_order_preference_oldest">Oldest First</string>
+    <string name="sort_order_preference_custom">Custom</string>
+    <string name="sort_order_preference_custom_summary">Sort notes in a custom order.</string>
+    <string name="sort_order_preference_custom_key">sort_order_preference_custom_key</string>
+    <string name="sort_order_preference_custom_default">default</string>
+    <string name="sort_order_preference_custom_ascending">Ascending</string>
+    <string name="sort_order_preference_custom_descending">Descending</string>
+    <string name="sort_order_preference_custom_alphabetical">Alphabetical</string>
+    <string name="sort_order_preference_custom_recent">Most Recent</string>
+    <string name="sort_order_preference_custom_oldest">Oldest First</string>
+    <string name="sort_order_preference_custom_custom">Custom</string>
 
 </resources>
