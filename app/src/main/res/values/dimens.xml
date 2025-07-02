@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--    Category CardView-->
+    <dimen name="tv_category_text_size">20sp</dimen>
+    <dimen name="tv_category_layout_width">250dp</dimen>
+
+
     <!--    Notes CardView-->
     <dimen name="card_view_height">70dp</dimen>
     <dimen name="card_view_margin_top">8dp</dimen>
@@ -8,25 +13,25 @@
     <dimen name="card_view_margin_end">10dp</dimen>
     <dimen name="card_view_corner_radius">8dp</dimen>
 
+    <!--    TextView in Notes/Category View Holder-->
+    <dimen name="tv_layout_width">250dp</dimen>
+    <dimen name="tv_title_text_size">16sp</dimen>
+    <dimen name="tv_margin_start">10dp</dimen>
+
+    <dimen name="tv_content_text_size">12sp</dimen>
+    <dimen name="tv_content_max_length">30</dimen>
+    <dimen name="tv_content_margin_top">6dp</dimen>
+
     <!--    TextView in Activity Add/Edit Note-->
     <dimen name="et_title_text_size">25sp</dimen>
     <dimen name="et_title_padding">10dp</dimen>
     <dimen name="et_content_text_size">20sp</dimen>
     <dimen name="et_content_padding">10dp</dimen>
 
-    <!--    TextView in Note View Holder-->
-    <dimen name="tv_title_layout_width">250dp</dimen>
-    <dimen name="tv_title_text_size">16sp</dimen>
-    <dimen name="tv_title_margin_start">10dp</dimen>
-
-    <dimen name="tv_content_layout_width">250dp</dimen>
-    <dimen name="tv_content_text_size">12sp</dimen>
-    <dimen name="tv_content_max_length">30</dimen>
-    <dimen name="tv_content_margin_start">10dp</dimen>
-    <dimen name="tv_content_margin_top">6dp</dimen>
-
     <!--    FAB Add Note-->
     <dimen name="fab_margin">20dp</dimen>
+
+
 
 
 
