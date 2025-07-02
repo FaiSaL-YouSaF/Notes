@@ -19,7 +19,6 @@
     <dimen name="tv_margin_start">10dp</dimen>
 
     <dimen name="tv_content_text_size">12sp</dimen>
-    <dimen name="tv_content_max_length">30</dimen>
     <dimen name="tv_content_margin_top">6dp</dimen>
 
     <!--    TextView in Activity Add/Edit Note-->

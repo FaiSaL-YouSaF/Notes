@@ -32,7 +32,7 @@
             android:layout_marginStart="@dimen/tv_margin_start"
             android:layout_marginTop="@dimen/tv_content_margin_top"
             android:textSize="@dimen/tv_content_text_size"
-            android:maxLength="@dimen/tv_content_max_length"
+            android:maxLength="30"
             android:gravity="start"
             android:layout_gravity="start"
             />
