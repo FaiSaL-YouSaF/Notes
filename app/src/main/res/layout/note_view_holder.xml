@@ -2,12 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
-    android:backgroundTint="@color/smoke_white"
-    app:cardCornerRadius="@dimen/card_corner_radius">
+    android:layout_height="@dimen/card_view_height"
+    android:layout_marginTop="@dimen/card_view_margin_top"
+    android:layout_marginStart="@dimen/card_view_margin_start"
+    android:layout_marginEnd="@dimen/card_view_margin_end"
+    android:backgroundTint="@color/amber_500"
+    app:cardCornerRadius="@dimen/card_view_corner_radius">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -17,21 +17,21 @@
         
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/tv_title_layout_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"
+            android:layout_marginStart="@dimen/tv_title_margin_start"
+            android:textSize="@dimen/tv_title_text_size"
             android:textStyle="bold"
             android:gravity="start"
             android:layout_gravity="start"/>
 
         <TextView
             android:id="@+id/tvContent"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/tv_content_layout_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp"
+            android:layout_marginStart="@dimen/tv_content_margin_start"
+            android:layout_marginTop="@dimen/tv_content_margin_top"
+            android:textSize="@dimen/tv_content_text_size"
             android:maxLength="30"
             android:gravity="start"
             android:layout_gravity="start"

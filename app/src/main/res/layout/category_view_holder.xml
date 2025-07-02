@@ -7,7 +7,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:backgroundTint="@color/smoke_white"
-    app:cardCornerRadius="@dimen/card_corner_radius">
+    app:cardCornerRadius="@dimen/card_view_corner_radius">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCategory"

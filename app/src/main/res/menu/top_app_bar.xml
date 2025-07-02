@@ -11,6 +11,7 @@
     <item
         android:id="@+id/btnSearch"
         android:title="@string/title_btn_search"
+        android:iconTint="@color/amber_500"
         android:icon="@drawable/baseline_search_24"
         android:contentDescription="@string/description_btn_search"
         app:showAsAction="ifRoom"/>
