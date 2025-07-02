@@ -43,7 +43,8 @@
     <string name="theme_preference_summary">Choose a theme for the app.</string>
     <string name="theme_preference_key">theme_preference_key</string>
     <string name="theme_default_value">default</string>
-    <string name="font_style_preference">Font Style</string>
+    <string name="font_style_preference_key">font_style_preference</string>
+    <string name="font_style_preference_title">Font Style</string>
     <string name="font_style_preference_summary">Choose a font style for the app.</string>
     <string name="text_size_preference">Text Size</string>
     <string name="text_size_preference_summary">Adjust the default text size for notes.</string>
@@ -73,5 +74,19 @@
     <string name="sort_order_preference_custom_recent">Most Recent</string>
     <string name="sort_order_preference_custom_oldest">Oldest First</string>
     <string name="sort_order_preference_custom_custom">Custom</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>

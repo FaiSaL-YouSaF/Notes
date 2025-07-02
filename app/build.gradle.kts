@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     //preference
     implementation(libs.preference.ktx)
+    implementation(libs.preference)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

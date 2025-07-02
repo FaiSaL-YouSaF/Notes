@@ -6,10 +6,6 @@ import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.faisalyousaf777.notes.fragment.content.CategoriesFragment;
@@ -21,7 +17,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CoordinatorLayout toolbarLayout;
     private BottomNavigationView bottomNavigation;
 
     @SuppressLint("MissingInflatedId")
@@ -30,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-//        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        toolbarLayout = findViewById(R.id.toolbarLayout);
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
@@ -50,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 loadContentFragment(FavoritesFragment.newInstance());
             } else if (item.getItemId() == R.id.settingsNavigation) {
                 loadToolbarFragment(NotesToolbarFragment.newInstance());
-                loadContentFragment(SettingsFragment.newInstance());
+                loadContentFragment(new SettingsFragment());
             } else {
                 return false;
             }
