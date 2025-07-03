@@ -1,7 +1,15 @@
 package com.faisalyousaf777.notes.dao;
 
-import static com.faisalyousaf777.notes.DbHelper.*;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_CATEGORY;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_COLOR_CODE;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_CONTENT;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_CREATED_AT;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_ID;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_IS_FAVORITE;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_TITLE;
+import static com.faisalyousaf777.notes.DbHelper.COLUMN_UPDATED_AT;
 import static com.faisalyousaf777.notes.DbHelper.SELECT_ALL_NOTES;
+import static com.faisalyousaf777.notes.DbHelper.TABLE_NOTES;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,7 +21,6 @@ import com.faisalyousaf777.notes.DbHelper;
 import com.faisalyousaf777.notes.entity.Note;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 

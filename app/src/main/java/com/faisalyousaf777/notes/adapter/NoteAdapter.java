@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faisalyousaf777.notes.OnAdapterItemClickListener;
@@ -51,6 +52,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
             }
             return true;
         });
+
+        holder.btnToggleFavorite.setOnClickListener(v -> {
+            holder.btnToggleFavorite.setImageResource(note.isFavorite() ? R.drawable.baseline_star_24 : R.drawable.outline_star_border_24);
+        });
     }
 
     @Override
@@ -71,11 +76,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     public static class NoteViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle, tvContent;
+        AppCompatImageButton btnToggleFavorite;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvContent = itemView.findViewById(R.id.tvContent);
+            btnToggleFavorite = itemView.findViewById(R.id.btnToggleFavorite);
         }
     }
 }
