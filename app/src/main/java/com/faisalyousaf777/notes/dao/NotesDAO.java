@@ -94,8 +94,8 @@ public class NotesDAO {
         try {
             db = dbHelper.getWritableDatabase();
             db.insert(TABLE_NOTES, null, contentValues);
-        } catch (Exception e) {
-            Log.d("InsertNote", "insertNote: failed to insert note" + e.getMessage());
+        } catch (Exception ex) {
+            Log.d("InsertNote", "insertNote: failed to insert note" + ex.getMessage());
         } finally {
             if (db != null && db.isOpen()) {
                 db.close();
@@ -104,33 +104,53 @@ public class NotesDAO {
     }
 
     public Note getNoteById(final int noteId) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+        Note note = null;
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NOTES + " WHERE " + COLUMN_ID + " = ?", new String[]{String.valueOf(noteId)});
-        if (cursor.moveToFirst()) {
-            String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
-            String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
-            boolean isFavorite = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_FAVORITE)) == 1;
-            String category = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
-            String colorCode = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_COLOR_CODE));
-            String createdAt = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATED_AT));
-            String updatedAt = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_UPDATED_AT));
-            cursor.close();
-            db.close();
-            return new Note.Builder()
-                    .setId(noteId)
-                    .setTitle(title)
-                    .setContent(content)
-                    .setIsFavorite(isFavorite)
-                    .setCategory(category)
-                    .setCreatedAt(createdAt != null ? LocalDateTime.parse(createdAt) : null)
-                    .setUpdatedAt(updatedAt != null ? LocalDateTime.parse(updatedAt) : null)
-                    .setColorCode(colorCode)
-                    .build();
+        try {
+            db = dbHelper.getReadableDatabase();
+            cursor = db.query(
+                    TABLE_NOTES,
+                    null,
+                    COLUMN_ID + " = ?",
+                    new String[]{String.valueOf(noteId)},
+                    null, null, null,
+                    "1"
+            );
+            if (cursor != null && cursor.moveToFirst()) {
+                // Cache the column indices to avoid repeated calls to getColumnIndexOrThrow
+                final int idIndex = cursor.getColumnIndexOrThrow(COLUMN_ID);
+                final int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+                final int contentIndex = cursor.getColumnIndexOrThrow(COLUMN_CONTENT);
+                final int isFavoriteIndex = cursor.getColumnIndexOrThrow(COLUMN_IS_FAVORITE);
+                final int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+                final int colorCodeIndex = cursor.getColumnIndexOrThrow(COLUMN_COLOR_CODE);
+                final int createdAtIndex = cursor.getColumnIndexOrThrow(COLUMN_CREATED_AT);
+                final int updatedAtIndex = cursor.getColumnIndexOrThrow(COLUMN_UPDATED_AT);
+
+                note = new Note.Builder()
+                        .setId(cursor.getInt(idIndex))
+                        .setTitle(cursor.getString(titleIndex))
+                        .setContent(cursor.getString(contentIndex))
+                        .setIsFavorite(cursor.getInt(isFavoriteIndex) == 1)
+                        .setCategory(cursor.getString(categoryIndex))
+                        .setColorCode(cursor.getString(colorCodeIndex))
+                        .setCreatedAt(LocalDateTime.parse(cursor.getString(createdAtIndex)))
+                        .setUpdatedAt(cursor.getString(updatedAtIndex) != null ? LocalDateTime.parse(cursor.getString(updatedAtIndex)) : null)
+                        .build();
+            }
+        } catch (final Exception ex) {
+            Log.d("GetNoteById", "getNoteById: failed to retrieve note" + ex.getMessage());
+        } finally {
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        cursor.close();
-        db.close();
-        return null;
+        return note;
     }
 
     public void updateNoteById(final int noteId, final Note note) {
