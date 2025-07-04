@@ -1,17 +1,10 @@
 package com.faisalyousaf777.notes;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DbHelper extends SQLiteOpenHelper {
 
@@ -21,13 +14,10 @@ public class DbHelper extends SQLiteOpenHelper {
     // Table name
     public static final String TABLE_NOTES = "notes_table";
     public static final String TABLE_CATEGORIES = "categories_table";
-
     // Common columns
     public static final String COLUMN_ID = "id";
-
     // Categories table columns
     public static final String COLUMN_NAME = "name";
-
     // Notes table columns
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_CONTENT = "content";
@@ -57,6 +47,7 @@ public class DbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    // Singleton pattern to ensure only one instance of DbHelper exists
     public static DbHelper getInstance(Context context) {
         if (instance == null) {
             instance = new DbHelper(context);
@@ -118,9 +109,6 @@ public class DbHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORIES);
         }
     }
-
-
-
 
 
 }
