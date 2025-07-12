@@ -1,14 +1,14 @@
-package com.faisalyousaf777.notes.dao;
+package com.faisalyousaf777.notes.commons.dao;
 
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_CATEGORY;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_COLOR_CODE;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_CONTENT;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_CREATED_AT;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_ID;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_IS_FAVORITE;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_TITLE;
-import static com.faisalyousaf777.notes.DbHelper.COLUMN_UPDATED_AT;
-import static com.faisalyousaf777.notes.DbHelper.TABLE_NOTES;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_CATEGORY;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_COLOR_CODE;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_CONTENT;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_CREATED_AT;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_ID;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_IS_FAVORITE;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_TITLE;
+import static com.faisalyousaf777.notes.commons.DbHelper.COLUMN_UPDATED_AT;
+import static com.faisalyousaf777.notes.commons.DbHelper.TABLE_NOTES;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,8 +16,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.faisalyousaf777.notes.DbHelper;
-import com.faisalyousaf777.notes.entity.Note;
+import com.faisalyousaf777.notes.commons.DbHelper;
+import com.faisalyousaf777.notes.commons.entity.Note;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

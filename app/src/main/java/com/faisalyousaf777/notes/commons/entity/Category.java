@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.entity;
+package com.faisalyousaf777.notes.commons.entity;
 
 import androidx.annotation.NonNull;
 

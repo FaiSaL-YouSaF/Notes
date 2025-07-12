@@ -1,14 +1,14 @@
-package com.faisalyousaf777.notes.dao;
+package com.faisalyousaf777.notes.commons.dao;
 
-import static com.faisalyousaf777.notes.DbHelper.*;
+import static com.faisalyousaf777.notes.commons.DbHelper.*;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.faisalyousaf777.notes.DbHelper;
-import com.faisalyousaf777.notes.entity.Category;
+import com.faisalyousaf777.notes.commons.DbHelper;
+import com.faisalyousaf777.notes.commons.entity.Category;
 
 import java.util.ArrayList;
 import java.util.List;

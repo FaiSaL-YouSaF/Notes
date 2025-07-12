@@ -1,6 +1,6 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.commons;
 
-import static com.faisalyousaf777.notes.fragment.content.NotesFragment.NOTE_ID;
+import static com.faisalyousaf777.notes.fragment_home.NotesFragment.NOTE_ID;
 
 import android.os.Bundle;
 
@@ -13,8 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.faisalyousaf777.notes.dao.NotesDAO;
-import com.faisalyousaf777.notes.entity.Note;
+import com.faisalyousaf777.notes.R;
+import com.faisalyousaf777.notes.commons.dao.NotesDAO;
+import com.faisalyousaf777.notes.commons.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.time.LocalDateTime;

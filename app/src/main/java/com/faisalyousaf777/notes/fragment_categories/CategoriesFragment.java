@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.fragment.content;
+package com.faisalyousaf777.notes.fragment_categories;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,14 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.faisalyousaf777.notes.OnAdapterItemClickListener;
-import com.faisalyousaf777.notes.adapter.NoteAdapter;
-import com.faisalyousaf777.notes.dao.CategoryDAO;
-import com.faisalyousaf777.notes.dao.NotesDAO;
-import com.faisalyousaf777.notes.entity.Category;
+import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.fragment_home.NoteAdapter;
+import com.faisalyousaf777.notes.commons.dao.CategoryDAO;
+import com.faisalyousaf777.notes.commons.dao.NotesDAO;
+import com.faisalyousaf777.notes.commons.entity.Category;
 import com.faisalyousaf777.notes.R;
-import com.faisalyousaf777.notes.adapter.CategoriesAdapter;
-import com.faisalyousaf777.notes.entity.Note;
+import com.faisalyousaf777.notes.commons.entity.Note;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

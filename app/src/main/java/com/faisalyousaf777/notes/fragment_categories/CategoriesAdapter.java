@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.adapter;
+package com.faisalyousaf777.notes.fragment_categories;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.faisalyousaf777.notes.entity.Category;
-import com.faisalyousaf777.notes.entity.Note;
-import com.faisalyousaf777.notes.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.commons.entity.Category;
+import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
 
 import java.util.List;

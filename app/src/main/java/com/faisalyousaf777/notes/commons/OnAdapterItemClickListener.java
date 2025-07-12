@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.commons;
 
 import android.view.View;
 

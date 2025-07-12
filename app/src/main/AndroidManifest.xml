@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Notes"
         tools:targetApi="31">
         <activity
-            android:name=".EditNote"
+            android:name=".commons.EditNote"
             android:exported="false" />
         <activity
-            android:name=".AddNote"
+            android:name=".commons.AddNote"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

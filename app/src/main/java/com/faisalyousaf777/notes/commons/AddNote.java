@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.commons;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,10 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.faisalyousaf777.notes.dao.CategoryDAO;
-import com.faisalyousaf777.notes.dao.NotesDAO;
-import com.faisalyousaf777.notes.entity.Category;
-import com.faisalyousaf777.notes.entity.Note;
+import com.faisalyousaf777.notes.R;
+import com.faisalyousaf777.notes.commons.dao.CategoryDAO;
+import com.faisalyousaf777.notes.commons.dao.NotesDAO;
+import com.faisalyousaf777.notes.commons.entity.Category;
+import com.faisalyousaf777.notes.commons.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.time.LocalDateTime;

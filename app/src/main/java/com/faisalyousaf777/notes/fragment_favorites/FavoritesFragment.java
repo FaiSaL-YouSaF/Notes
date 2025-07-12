@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.fragment.content;
+package com.faisalyousaf777.notes.fragment_favorites;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -17,12 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.faisalyousaf777.notes.EditNote;
-import com.faisalyousaf777.notes.entity.Note;
-import com.faisalyousaf777.notes.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.commons.EditNote;
+import com.faisalyousaf777.notes.commons.entity.Note;
+import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
-import com.faisalyousaf777.notes.adapter.FavoritesAdapter;
-import com.faisalyousaf777.notes.dao.NotesDAO;
+import com.faisalyousaf777.notes.commons.dao.NotesDAO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.fragment.content;
+package com.faisalyousaf777.notes.fragment_home;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -16,13 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.faisalyousaf777.notes.AddNote;
-import com.faisalyousaf777.notes.EditNote;
-import com.faisalyousaf777.notes.entity.Note;
-import com.faisalyousaf777.notes.adapter.NoteAdapter;
-import com.faisalyousaf777.notes.OnAdapterItemClickListener;
+import com.faisalyousaf777.notes.commons.AddNote;
+import com.faisalyousaf777.notes.commons.EditNote;
+import com.faisalyousaf777.notes.commons.entity.Note;
+import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
-import com.faisalyousaf777.notes.dao.NotesDAO;
+import com.faisalyousaf777.notes.commons.dao.NotesDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;

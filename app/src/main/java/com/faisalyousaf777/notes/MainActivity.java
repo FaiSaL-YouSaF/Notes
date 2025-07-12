@@ -5,14 +5,13 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
-import com.faisalyousaf777.notes.fragment.content.CategoriesFragment;
-import com.faisalyousaf777.notes.fragment.content.FavoritesFragment;
-import com.faisalyousaf777.notes.fragment.content.NotesFragment;
-import com.faisalyousaf777.notes.fragment.content.SettingsFragment;
-import com.faisalyousaf777.notes.fragment.toolbar.NotesToolbarFragment;
+import com.faisalyousaf777.notes.fragment_categories.CategoriesFragment;
+import com.faisalyousaf777.notes.fragment_favorites.FavoritesFragment;
+import com.faisalyousaf777.notes.fragment_home.NotesFragment;
+import com.faisalyousaf777.notes.fragment_settings.SettingsFragment;
+import com.faisalyousaf777.notes.fragment_home.NotesToolbarFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes;
+package com.faisalyousaf777.notes.fragment_settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
