@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            style="@style/CustomToolbarStyle"
             app:menu="@menu/top_app_bar"
             app:title="@string/app_name"
             app:titleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
@@ -25,6 +26,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_content"
         android:layout_width="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="?attr/actionBarSize"
+
         android:layout_height="match_parent" />
 
     <!-- Navigation Rail for screenWidth >= 600dp -->

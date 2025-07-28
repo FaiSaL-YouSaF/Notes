@@ -21,6 +21,7 @@
             android:id="@+id/tab_layout_categories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/str_desc_tab_layout_categories"
             app:tabMode="scrollable" />
     </com.google.android.material.appbar.AppBarLayout>
 
