@@ -29,10 +29,8 @@ import java.util.List;
 
 public class NotesFragment extends Fragment implements OnAdapterItemClickListener {
 
-    private FloatingActionButton addNoteFAB;
     public static final String NOTE_ID = "note_id";
     private RecyclerView notesRecyclerView;
-    private NoteAdapter noteAdapter;
     private NotesDAO notesDAO;
     private List<Note> fetchedNotes;
 
@@ -54,7 +52,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
         if (getArguments() != null) {
-            addNoteFAB = view.findViewById(R.id.addNoteFAB);
+            FloatingActionButton addNoteFAB = view.findViewById(R.id.addNoteFAB);
             addNoteFAB.setOnClickListener(v -> {
                 Intent intent = new Intent(getContext(), AddNote.class);
                 addNoteLauncher.launch(intent);
@@ -110,7 +108,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
 
     private void refreshNotes() {
         fetchedNotes = notesDAO.getAllNotes();
-        noteAdapter = new NoteAdapter(fetchedNotes, this);
+        NoteAdapter noteAdapter = new NoteAdapter(fetchedNotes, this);
         notesRecyclerView.setAdapter(noteAdapter);
     }
 }

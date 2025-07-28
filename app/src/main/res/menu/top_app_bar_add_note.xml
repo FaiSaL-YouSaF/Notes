@@ -5,42 +5,37 @@
     <item
         android:id="@+id/btnFavorite"
         android:title="@string/title_btn_favorite"
-        android:iconTint="@color/amber_500"
         android:icon="@drawable/outline_star_border_24"
-        android:contentDescription="@string/description_btn_favorite"
+        android:contentDescription="@string/desc_btn_favorite"
         android:checkable="true"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/btnDone"
         android:title="@string/title_btn_done"
-        android:iconTint="@color/amber_500"
         android:icon="@drawable/baseline_done_24"
-        android:contentDescription="@string/description_btn_done"
+        android:contentDescription="@string/desc_btn_done"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/btnCategory"
         android:title="@string/title_btn_category"
-        android:iconTint="@color/amber_500"
         android:icon="@drawable/outline_category_24"
-        android:contentDescription="@string/description_btn_category"
+        android:contentDescription="@string/desc_btn_category"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/btnColor"
         android:title="@string/title_btn_color"
-        android:iconTint="@color/amber_500"
         android:icon="@drawable/baseline_color_lens_24"
-        android:contentDescription="@string/description_btn_color"
+        android:contentDescription="@string/desc_btn_color"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/btnDelete"
         android:title="@string/title_btn_delete"
         android:icon="@drawable/baseline_delete_outline_24"
-        android:iconTint="@color/amber_500"
-        android:contentDescription="@string/description_btn_delete"
+        android:contentDescription="@string/desc_btn_delete"
         app:showAsAction="ifRoom"/>
 
 </menu>

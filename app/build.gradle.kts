@@ -37,10 +37,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    // ViewModel
-    implementation(libs.lifecycle.viewmodel.ktx)
-    // LiveData
-    implementation(libs.lifecycle.livedata.ktx)
     //preference
     implementation(libs.preference.ktx)
     implementation(libs.preference)

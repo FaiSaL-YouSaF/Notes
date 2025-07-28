@@ -7,16 +7,16 @@
 
 
     <!--    Notes CardView-->
-    <dimen name="card_view_height">70dp</dimen>
-    <dimen name="card_view_margin_top">8dp</dimen>
-    <dimen name="card_view_margin_start">10dp</dimen>
-    <dimen name="card_view_margin_end">10dp</dimen>
-    <dimen name="card_view_corner_radius">8dp</dimen>
+    <dimen name="card_height">72dp</dimen>
+    <dimen name="card_margin_top">8dp</dimen>
+    <dimen name="card_margin_horizontal">10dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_inner_padding">8dp</dimen>
 
     <!--    TextView in Notes/Category View Holder-->
-    <dimen name="tv_layout_width">250dp</dimen>
+    <dimen name="tv_card_width">250dp</dimen>
     <dimen name="tv_title_text_size">16sp</dimen>
-    <dimen name="tv_margin_start">10dp</dimen>
 
     <dimen name="tv_content_text_size">12sp</dimen>
     <dimen name="tv_content_margin_top">6dp</dimen>

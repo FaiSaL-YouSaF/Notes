@@ -5,15 +5,15 @@
     <item
         android:id="@+id/btnEdit"
         android:title="@string/title_btn_edit"
-        android:contentDescription="@string/description_btn_edit"
+        android:contentDescription="@string/desc_btn_edit"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/btnSearch"
         android:title="@string/title_btn_search"
-        android:iconTint="@color/amber_500"
+        android:iconTint="?attr/colorControlNormal"
         android:icon="@drawable/baseline_search_24"
-        android:contentDescription="@string/description_btn_search"
+        android:contentDescription="@string/desc_btn_search"
         app:showAsAction="ifRoom"/>
 
 </menu>

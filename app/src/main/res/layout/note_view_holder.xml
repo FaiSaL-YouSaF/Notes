@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/card_view_height"
-    android:layout_marginTop="@dimen/card_view_margin_top"
-    android:layout_marginStart="@dimen/card_view_margin_start"
-    android:layout_marginEnd="@dimen/card_view_margin_end"
-    android:backgroundTint="@color/amber_500"
-    app:cardCornerRadius="@dimen/card_view_corner_radius">
+    android:layout_height="@dimen/card_height"
+    android:layout_marginHorizontal="@dimen/card_margin_horizontal"
+    android:layout_marginTop="@dimen/card_margin_top"
+    app:cardCornerRadius="@dimen/card_corner_radius">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
-        
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="@dimen/tv_layout_width"
+        android:paddingHorizontal="@dimen/card_padding">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/tv_card_width"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tv_margin_start"
-            android:textSize="@dimen/tv_title_text_size"
-            android:textStyle="bold"
-            android:gravity="start"
-            android:layout_gravity="start"/>
+            android:layout_gravity="center_vertical|start"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="@dimen/tv_layout_width"
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:textSize="@dimen/tv_title_text_size"
+                android:textStyle="bold"
+                tools:text="Notes Title Display" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/tv_content_margin_top"
+                android:gravity="start"
+                android:maxLength="30"
+                android:textSize="@dimen/tv_content_text_size"
+                tools:text="This is a sample content text that is long enough to test the layout and see how it behaves with longer text." />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_last_modified"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tv_margin_start"
-            android:layout_marginTop="@dimen/tv_content_margin_top"
-            android:textSize="@dimen/tv_content_text_size"
-            android:maxLength="30"
-            android:gravity="start"
-            android:layout_gravity="start"
-            />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btnToggleFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end"
-        android:layout_marginEnd="20dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:srcCompat="@drawable/outline_star_border_24"
-        />
+            android:text="2025/7/27\n12:00 PM"
+            android:textSize="9sp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="2025/7/27\n12:00 PM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
