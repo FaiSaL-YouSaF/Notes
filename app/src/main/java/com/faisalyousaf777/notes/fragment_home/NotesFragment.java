@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.faisalyousaf777.notes.commons.entity.Note;
 import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
 import com.faisalyousaf777.notes.commons.dao.NotesDAO;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -43,6 +45,11 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @SuppressLint("MissingInflatedId")

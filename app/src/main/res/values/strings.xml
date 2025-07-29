@@ -24,11 +24,11 @@
     <string name="et_content_hint">Start typing here…</string>
 
     <!--    Bottom navigation-->
-    <string name="str_title_home">Home</string>
+    <string name="str_title_notes">Notes</string>
     <string name="str_title_categories">Categories</string>
     <string name="str_title_favorites">Favorite</string>
     <string name="str_title_settings">Settings</string>
-    <string name="str_desc_home">Home screen with notes</string>
+    <string name="str_desc_notes">Home page with notes</string>
     <string name="str_desc_categories">Categories screen</string>
     <string name="str_desc_favorites">Favorites screen</string>
     <string name="str_desc_settings">Settings screen</string>
