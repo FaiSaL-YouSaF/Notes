@@ -1,15 +1,19 @@
 package com.faisalyousaf777.notes.fragment_home;
 
+import static com.faisalyousaf777.notes.fragment_home.NotesFragment.NOTE_ID;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
+import com.faisalyousaf777.notes.commons.EditNote;
 import com.faisalyousaf777.notes.commons.entity.Note;
 
 import java.util.List;
@@ -17,11 +21,9 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
 
     private final List<Note> listOfNotes;
-    private final OnAdapterItemClickListener onAdapterItemClickListener;
 
-    public NoteAdapter(List<Note> listOfNotes, OnAdapterItemClickListener onAdapterItemClickListener) {
+    public NoteAdapter(List<Note> listOfNotes) {
         this.listOfNotes = listOfNotes;
-        this.onAdapterItemClickListener = onAdapterItemClickListener;
     }
 
     @NonNull
@@ -38,19 +40,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         holder.tvContent.setText(note.getContent());
 
         // Adapter item click listener
-        holder.itemView.setOnClickListener(v -> {
-            if (onAdapterItemClickListener != null) {
-                onAdapterItemClickListener.onItemClicked(v, position);
-            }
+        holder.itemView.setOnClickListener(view -> {
+            // Open AddEditNote activity with note details
+            Intent intent = new Intent(view.getContext(), EditNote.class);
+            intent.putExtra(NOTE_ID, note.getId());
+            view.getContext().startActivity(intent);
         });
-
         // Adapter item long click listener
-        holder.itemView.setOnLongClickListener(v -> {
-            if (onAdapterItemClickListener != null) {
-                onAdapterItemClickListener.onItemLongClicked(v, position);
-            }
+        holder.itemView.setOnLongClickListener(view -> {
+            // Show delete note dialog
+            Toast.makeText(view.getContext(), "Long Clicked : " + position, Toast.LENGTH_SHORT).show();
             return true;
         });
+
     }
 
     @Override
@@ -58,15 +60,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         return listOfNotes.size();
     }
 
-//    public void removeItem(int position) {
-//        listOfNotes.remove(position);
-//        notifyItemRemoved(position);
-//    }
-
-//    public void restoreItem(Note note, int position) {
-//        listOfNotes.add(position, note);
-//        notifyItemInserted(position);
-//    }
 
     public static class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvContent;

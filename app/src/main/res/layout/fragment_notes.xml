@@ -18,7 +18,7 @@
             style="@style/CustomToolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/top_app_bar"
+            app:menu="@menu/menu_toolbar_main"
             app:title="@string/app_name"
             app:titleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
             app:titleTextColor="?attr/colorControlNormal" />
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:contentDescription="@string/desc_btn_add_note"
+        android:contentDescription="@string/desc_fab_add_note"
         app:backgroundTintMode="screen"
         app:srcCompat="@drawable/baseline_add_24"
         android:tint="?attr/colorControlNormal" />

@@ -98,24 +98,24 @@ public class AddNote extends AppCompatActivity {
     private void showCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_category, null);
-        builder.setView(dialogView)
-                .setTitle("Select Category")
-                .setPositiveButton("OK", (dialog, id) -> {
-                    Spinner spinner = dialogView.findViewById(R.id.categorySpinner);
-                    categoryDAO = new CategoryDAO(this);
-                    List<Category> categories = categoryDAO.getAllCategories();
-                    String[] categoryNames = new String[categories.size()];
-                    for (int i = 0; i < categories.size(); i++) {
-                        categoryNames[i] = categories.get(i).getName();
-                    }
-                    spinner.setAutofillHints(categoryNames);
-                    String selectedCategory = spinner.getSelectedItem().toString();
-                    // Handle the selected category
-                    // For example, you can save it to the note or perform any other action
-                })
-                .setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
-        builder.create().show();
+//        View dialogView = inflater.inflate(R.layout.dialog_category, null);
+//        builder.setView(dialogView)
+//                .setTitle("Select Category")
+//                .setPositiveButton("OK", (dialog, id) -> {
+////                    Spinner spinner = dialogView.findViewById(R.id.categorySpinner);
+//                    categoryDAO = new CategoryDAO(this);
+//                    List<Category> categories = categoryDAO.getAllCategories();
+//                    String[] categoryNames = new String[categories.size()];
+//                    for (int i = 0; i < categories.size(); i++) {
+//                        categoryNames[i] = categories.get(i).getName();
+//                    }
+////                    spinner.setAutofillHints(categoryNames);
+////                    String selectedCategory = spinner.getSelectedItem().toString();
+//                    // Handle the selected category
+//                    // For example, you can save it to the note or perform any other action
+//                })
+//                .setNegativeButton("Cancel", (dialog, id) -> dialog.dismiss());
+//        builder.create().show();
     }
     
 }

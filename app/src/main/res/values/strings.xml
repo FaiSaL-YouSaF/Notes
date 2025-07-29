@@ -34,7 +34,7 @@
     <string name="str_desc_settings">Settings screen</string>
     <string name="str_desc_tab_layout_categories">Tab layout for categories</string>
 
-    <string name="desc_btn_add_note">Add new note button</string>
+    <string name="desc_fab_add_note">Add new note button</string>
     <string name="title_btn_favorite">Add to Favorites</string>
     <string name="desc_btn_favorite">Add to favorites</string>
 

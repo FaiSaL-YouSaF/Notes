@@ -37,6 +37,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.database.room)
     //preference
     implementation(libs.preference.ktx)
     implementation(libs.preference)

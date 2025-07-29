@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btnEdit"
+        android:id="@+id/action_edit"
         android:title="@string/title_btn_edit"
         android:contentDescription="@string/desc_btn_edit"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/btnSearch"
+        android:id="@+id/action_search"
         android:title="@string/title_btn_search"
         android:iconTint="?attr/colorControlNormal"
         android:icon="@drawable/baseline_search_24"

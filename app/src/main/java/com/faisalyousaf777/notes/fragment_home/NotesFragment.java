@@ -67,7 +67,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
             notesRecyclerView = view.findViewById(R.id.notesRecyclerView);
             notesDAO = new NotesDAO(getContext());
             notesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            refreshNotes();
+//            refreshNotes();
         }
         return view;
     }
@@ -87,7 +87,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
                 .setPositiveButton("Yes", ((dialog, which) -> {
                     notesDAO.deleteNoteById(fetchedNotes.get(position).getId());
                     fetchedNotes.remove(position);
-                    refreshNotes();
+//                    refreshNotes();
                     dialog.dismiss();
                 }))
                 .setNegativeButton("No", ((dialog, which) -> dialog.dismiss()))
@@ -99,7 +99,7 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    refreshNotes();
+//                    refreshNotes();
                 }
             }
     );
@@ -108,14 +108,9 @@ public class NotesFragment extends Fragment implements OnAdapterItemClickListene
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    refreshNotes();
+//                    refreshNotes();
                 }
             }
     );
 
-    private void refreshNotes() {
-        fetchedNotes = notesDAO.getAllNotes();
-        NoteAdapter noteAdapter = new NoteAdapter(fetchedNotes, this);
-        notesRecyclerView.setAdapter(noteAdapter);
-    }
 }
