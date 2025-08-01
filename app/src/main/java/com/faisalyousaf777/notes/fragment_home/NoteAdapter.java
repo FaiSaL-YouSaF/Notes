@@ -1,6 +1,6 @@
 package com.faisalyousaf777.notes.fragment_home;
 
-import static com.faisalyousaf777.notes.fragment_home.NotesFragment.NOTE_ID;
+import static com.faisalyousaf777.notes.commons.NoteUtils.NOTE_ID;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import com.faisalyousaf777.notes.R;
 import com.faisalyousaf777.notes.commons.EditNote;
 import com.faisalyousaf777.notes.commons.entity.Note;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
@@ -38,12 +39,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         Note note = listOfNotes.get(position);
         holder.tvTitle.setText(note.getTitle());
         holder.tvContent.setText(note.getContent());
+        holder.tvUpdatedAt.setText(note.getCreatedAt().format(DateTimeFormatter.ofPattern("yy/MM/dd\nhh:mm a")).toUpperCase());
 
         // Adapter item click listener
         holder.itemView.setOnClickListener(view -> {
             // Open AddEditNote activity with note details
             Intent intent = new Intent(view.getContext(), EditNote.class);
-            intent.putExtra(NOTE_ID, note.getId());
+            intent.putExtra(NOTE_ID, note.getNoteId());
             view.getContext().startActivity(intent);
         });
         // Adapter item long click listener
@@ -62,12 +64,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
 
 
     public static class NoteViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvContent;
+        TextView tvTitle, tvContent, tvUpdatedAt;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvContent = itemView.findViewById(R.id.tv_content);
+            tvUpdatedAt = itemView.findViewById(R.id.tv_updated_at);
         }
     }
 }

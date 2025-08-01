@@ -48,10 +48,9 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_last_modified"
+            android:id="@+id/tv_updated_at"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2025/7/27\n12:00 PM"
             android:textSize="9sp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,16 +1,19 @@
 package com.faisalyousaf777.notes;
 
+import static com.faisalyousaf777.notes.commons.NoteUtils.TAG_ALL;
+
 import android.content.Context;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faisalyousaf777.notes.commons.entity.Note;
 import com.faisalyousaf777.notes.fragment_home.NoteAdapter;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +43,15 @@ public class RecyclerViewPagerAdapter extends RecyclerView.Adapter<RecyclerViewP
     @Override
     public void onBindViewHolder(@NonNull PagerViewHolder holder, int position) {
         String filterKey = filters.get(position);
-        List<Note> notesForTab = filteredDataMap.get(filterKey);
+        List<Note> notesForTab = new ArrayList<>();
+        if (filterKey.equals(TAG_ALL)) {
+            Collection<List<Note>> collection = filteredDataMap.values();
+            for (List<Note> notes : collection) {
+                notesForTab.addAll(notes);
+            }
+        } else {
+            notesForTab = filteredDataMap.get(filterKey);
+        }
         NoteAdapter adapter = new NoteAdapter(notesForTab);
         holder.rvColors.setLayoutManager(new LinearLayoutManager(context));
         holder.rvColors.setAdapter(adapter);

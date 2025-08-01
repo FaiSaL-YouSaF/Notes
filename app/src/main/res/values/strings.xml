@@ -14,8 +14,6 @@
     <string name="desc_btn_done">Button to save note</string>
     <string name="title_btn_delete">Delete</string>
     <string name="desc_btn_delete">Button to delete note</string>
-    <string name="title_btn_category">Category</string>
-    <string name="desc_btn_category">Button to add category</string>
     <string name="title_btn_color">Color</string>
     <string name="desc_btn_color">Button to change color</string>
 

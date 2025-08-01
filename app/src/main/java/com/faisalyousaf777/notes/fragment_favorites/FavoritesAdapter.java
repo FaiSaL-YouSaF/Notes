@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faisalyousaf777.notes.commons.entity.Note;
-import com.faisalyousaf777.notes.commons.OnAdapterItemClickListener;
 import com.faisalyousaf777.notes.R;
 
 import java.util.List;
@@ -17,11 +16,9 @@ import java.util.List;
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder> {
 
     private final List<Note> favoriteNotes;
-    private final OnAdapterItemClickListener onAdapterItemClickListener;
 
-    public FavoritesAdapter(List<Note> favoriteNotes, OnAdapterItemClickListener onAdapterItemClickListener) {
+    public FavoritesAdapter(List<Note> favoriteNotes) {
         this.favoriteNotes = favoriteNotes;
-        this.onAdapterItemClickListener = onAdapterItemClickListener;
     }
 
     @NonNull
@@ -38,19 +35,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
         holder.tvContent.setText(note.getContent());
 
         // Adapter item click listener
-        holder.itemView.setOnClickListener(v -> {
-            if (onAdapterItemClickListener != null) {
-                onAdapterItemClickListener.onItemClicked(v, position);
-            }
-        });
+
 
         // Adapter item long click listener
-        holder.itemView.setOnLongClickListener(v -> {
-            if (onAdapterItemClickListener != null) {
-                onAdapterItemClickListener.onItemLongClicked(v, position);
-            }
-            return true;
-        });
+
     }
 
     @Override

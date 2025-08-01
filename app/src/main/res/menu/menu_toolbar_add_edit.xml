@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_toggle_favorite"
+        android:checkable="true"
+        android:contentDescription="@string/desc_btn_favorite"
+        android:icon="@drawable/outline_star_border_24"
+        android:title="@string/title_btn_favorite"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_done"
+        android:contentDescription="@string/desc_btn_done"
+        android:icon="@drawable/baseline_done_24"
+        android:title="@string/title_btn_done"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_select_color"
+        android:contentDescription="@string/desc_btn_color"
+        android:icon="@drawable/baseline_color_lens_24"
+        android:title="@string/title_btn_color"
+        app:showAsAction="ifRoom" />
+
+</menu>
