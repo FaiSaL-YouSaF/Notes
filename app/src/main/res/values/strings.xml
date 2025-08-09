@@ -37,61 +37,63 @@
     <string name="desc_btn_favorite">Add to favorites</string>
 
     <string name="desc_btn_add_category">Add new category button</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     //    <!--    Settings-->
-<!--    <string name="appearance_settings_title">Appearance Settings</string>-->
-<!--    <string name="appearance_settings_desc">Customize the appearance of the app.</string>-->
-<!--    <string name="theme_preference_title">Theme</string>-->
-<!--    <string name="theme_preference_summary">Choose a theme for the app.</string>-->
-<!--    <string name="theme_preference_key">theme_preference_key</string>-->
-<!--    <string name="theme_default_value">default</string>-->
-<!--    <string name="font_style_preference_key">font_style_preference</string>-->
-<!--    <string name="font_style_preference_title">Font Style</string>-->
-<!--    <string name="font_style_preference_summary">Choose a font style for the app.</string>-->
-<!--    <string name="text_size_preference">Text Size</string>-->
-<!--    <string name="text_size_preference_summary">Adjust the default text size for notes.</string>-->
-<!--    <string name="text_size_preference_key">text_size_preference_key</string>-->
-<!--    <string name="default_color_preference">Default Note Color</string>-->
-<!--    <string name="default_color_preference_summary">Choose a default color for new notes.</string>-->
-<!--    <string name="default_color_preference_key">default_color_preference_key</string>-->
-<!--    <string name="default_category_preference">Default Category</string>-->
-<!--    <string name="default_category_preference_summary">Set a default category for new notes.</string>-->
-<!--    <string name="default_category_preference_key">default_category_preference_key</string>-->
-<!--    <string name="sort_order_preference">Sort Order</string>-->
-<!--    <string name="sort_order_preference_summary">Choose how to sort your notes.</string>-->
-<!--    <string name="sort_order_preference_key">sort_order_preference_key</string>-->
-<!--    <string name="sort_order_preference_default">default</string>-->
-<!--    <string name="sort_order_preference_ascending">Ascending</string>-->
-<!--    <string name="sort_order_preference_descending">Descending</string>-->
-<!--    <string name="sort_order_preference_alphabetical">Alphabetical</string>-->
-<!--    <string name="sort_order_preference_recent">Most Recent</string>-->
-<!--    <string name="sort_order_preference_oldest">Oldest First</string>-->
-<!--    <string name="sort_order_preference_custom">Custom</string>-->
-<!--    <string name="sort_order_preference_custom_summary">Sort notes in a custom order.</string>-->
-<!--    <string name="sort_order_preference_custom_key">sort_order_preference_custom_key</string>-->
-<!--    <string name="sort_order_preference_custom_default">default</string>-->
-<!--    <string name="sort_order_preference_custom_ascending">Ascending</string>-->
-<!--    <string name="sort_order_preference_custom_descending">Descending</string>-->
-<!--    <string name="sort_order_preference_custom_alphabetical">Alphabetical</string>-->
-<!--    <string name="sort_order_preference_custom_recent">Most Recent</string>-->
-<!--    <string name="sort_order_preference_custom_oldest">Oldest First</string>-->
-<!--    <string name="sort_order_preference_custom_custom">Custom</string>-->
+    <!--    <string name="appearance_settings_title">Appearance Settings</string>-->
+    <!--    <string name="appearance_settings_desc">Customize the appearance of the app.</string>-->
+    <!--    <string name="theme_preference_title">Theme</string>-->
+    <!--    <string name="theme_preference_summary">Choose a theme for the app.</string>-->
+    <!--    <string name="theme_preference_key">theme_preference_key</string>-->
+    <!--    <string name="theme_default_value">default</string>-->
+    <!--    <string name="font_style_preference_key">font_style_preference</string>-->
+    <!--    <string name="font_style_preference_title">Font Style</string>-->
+    <!--    <string name="font_style_preference_summary">Choose a font style for the app.</string>-->
+    <!--    <string name="text_size_preference">Text Size</string>-->
+    <!--    <string name="text_size_preference_summary">Adjust the default text size for notes.</string>-->
+    <!--    <string name="text_size_preference_key">text_size_preference_key</string>-->
+    <!--    <string name="default_color_preference">Default Note Color</string>-->
+    <!--    <string name="default_color_preference_summary">Choose a default color for new notes.</string>-->
+    <!--    <string name="default_color_preference_key">default_color_preference_key</string>-->
+    <!--    <string name="default_category_preference">Default Category</string>-->
+    <!--    <string name="default_category_preference_summary">Set a default category for new notes.</string>-->
+    <!--    <string name="default_category_preference_key">default_category_preference_key</string>-->
+    <!--    <string name="sort_order_preference">Sort Order</string>-->
+    <!--    <string name="sort_order_preference_summary">Choose how to sort your notes.</string>-->
+    <!--    <string name="sort_order_preference_key">sort_order_preference_key</string>-->
+    <!--    <string name="sort_order_preference_default">default</string>-->
+    <!--    <string name="sort_order_preference_ascending">Ascending</string>-->
+    <!--    <string name="sort_order_preference_descending">Descending</string>-->
+    <!--    <string name="sort_order_preference_alphabetical">Alphabetical</string>-->
+    <!--    <string name="sort_order_preference_recent">Most Recent</string>-->
+    <!--    <string name="sort_order_preference_oldest">Oldest First</string>-->
+    <!--    <string name="sort_order_preference_custom">Custom</string>-->
+    <!--    <string name="sort_order_preference_custom_summary">Sort notes in a custom order.</string>-->
+    <!--    <string name="sort_order_preference_custom_key">sort_order_preference_custom_key</string>-->
+    <!--    <string name="sort_order_preference_custom_default">default</string>-->
+    <!--    <string name="sort_order_preference_custom_ascending">Ascending</string>-->
+    <!--    <string name="sort_order_preference_custom_descending">Descending</string>-->
+    <!--    <string name="sort_order_preference_custom_alphabetical">Alphabetical</string>-->
+    <!--    <string name="sort_order_preference_custom_recent">Most Recent</string>-->
+    <!--    <string name="sort_order_preference_custom_oldest">Oldest First</string>-->
+    <!--    <string name="sort_order_preference_custom_custom">Custom</string>-->
     <!-- Preference Titles -->
-<!--    <string name="messages_header">Messages</string>-->
-<!--    <string name="sync_header">Sync</string>-->
+    <!--    <string name="messages_header">Messages</string>-->
+    <!--    <string name="sync_header">Sync</string>-->
 
     <!-- Messages Preferences -->
-<!--    <string name="signature_title">Your signature</string>-->
-<!--    <string name="reply_title">Default reply action</string>-->
+    <!--    <string name="signature_title">Your signature</string>-->
+    <!--    <string name="reply_title">Default reply action</string>-->
 
     <!-- Sync Preferences -->
-<!--    <string name="sync_title">Sync email periodically</string>-->
-<!--    <string name="attachment_title">Download incoming attachments</string>-->
-<!--    <string name="attachment_summary_on">Automatically download attachments for incoming emails-->
-<!--    </string>-->
-<!--    <string name="attachment_summary_off">Only download attachments when manually requested</string>-->
-<!--     TODO: Remove or change this placeholder text -->
-<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <!--    <string name="sync_title">Sync email periodically</string>-->
+    <!--    <string name="attachment_title">Download incoming attachments</string>-->
+    <!--    <string name="attachment_summary_on">Automatically download attachments for incoming emails-->
+    <!--    </string>-->
+    <!--    <string name="attachment_summary_off">Only download attachments when manually requested</string>-->
+    <!--     TODO: Remove or change this placeholder text -->
+    <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
 
 </resources>

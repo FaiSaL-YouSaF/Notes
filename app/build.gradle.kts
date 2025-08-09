@@ -40,6 +40,10 @@ dependencies {
     // Room Database
     implementation(libs.database.room)
     annotationProcessor(libs.database.room.compiler)
+    // LifeCycle
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.runtime)
     //preference
     implementation(libs.preference.ktx)
     implementation(libs.preference)

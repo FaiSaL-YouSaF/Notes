@@ -10,6 +10,7 @@ constraintlayout = "2.2.1"
 preferenceKtxVersion = "1.2.1"
 preference = "1.2.1"
 roomVersion = "2.7.2"
+lifecycleVersion = "2.9.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -23,6 +24,9 @@ preference-ktx = { group = "androidx.preference", name = "preference-ktx", versi
 preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 database-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 database-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion"}
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata", version.ref = "lifecycleVersion" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "lifecycleVersion" }
+lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime", version.ref = "lifecycleVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

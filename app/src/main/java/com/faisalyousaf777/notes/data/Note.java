@@ -1,6 +1,7 @@
-package com.faisalyousaf777.notes.commons.entity;
+package com.faisalyousaf777.notes.data;
 
-import static com.faisalyousaf777.notes.commons.NoteUtils.TAG_ALL;
+import static com.faisalyousaf777.notes.utils.NoteUtils.CATEGORY_ALL;
+import static com.faisalyousaf777.notes.utils.NoteUtils.TABLE_NOTES;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -9,7 +10,7 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
 
-@Entity(tableName = "notes_table")
+@Entity(tableName = TABLE_NOTES)
 public class Note {
 
     // ====== FIELDS ======
@@ -37,8 +38,8 @@ public class Note {
     @ColumnInfo(name = "is_deleted")
     private boolean isDeleted;
 
-    @ColumnInfo(name = "tags")
-    private String tags; // Comma-separated tags
+    @ColumnInfo(name = "category")
+    private String category; // Comma-separated
 
     @ColumnInfo(name = "color_code")
     private String colorCode; // Hex color code
@@ -71,7 +72,7 @@ public class Note {
         this.isFavorite = false;
         this.isArchived = false;
         this.isDeleted = false;
-        this.tags = TAG_ALL;
+        this.category = CATEGORY_ALL;
         this.colorCode = "#FFFFFF"; // Default white color
         this.remainderTime = null;
         this.attachmentPath = "";
@@ -87,9 +88,9 @@ public class Note {
         this.content = content;
     }
 
-    public Note(@NonNull String title, @NonNull String content, String tags) {
+    public Note(@NonNull String title, @NonNull String content, String category) {
         this(title, content);
-        this.tags = tags;
+        this.category = category;
     }
 
     public Note(@NonNull String title, @NonNull String content, @NonNull LocalDateTime createdAt) {
@@ -102,14 +103,50 @@ public class Note {
         this.isFavorite = isFavorite;
     }
 
-    public Note(@NonNull String title, @NonNull String content, @NonNull LocalDateTime createdAt, boolean isFavorite) {
+    public Note(
+            @NonNull String title,
+            @NonNull String content,
+            @NonNull LocalDateTime createdAt,
+            boolean isFavorite) {
         this(title, content, createdAt);
         this.isFavorite = isFavorite;
     }
 
+    public Note(
+            @NonNull String title,
+            @NonNull String content,
+            @NonNull LocalDateTime createdAt,
+            boolean isFavorite,
+            boolean isPinned,
+            boolean isArchived,
+            boolean isDeleted,
+            String category,
+            String colorCode,
+            LocalDateTime remainderTime,
+            String attachmentPath,
+            LocalDateTime updatedAt,
+            LocalDateTime lastViewedAt,
+            LocalDateTime deletedAt) {
+
+        this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.isFavorite = isFavorite;
+        this.isPinned = isPinned;
+        this.isArchived = isArchived;
+        this.isDeleted = isDeleted;
+        this.category = category;
+        this.colorCode = colorCode;
+        this.remainderTime = remainderTime;
+        this.attachmentPath = attachmentPath;
+        this.updatedAt = updatedAt;
+        this.lastViewedAt = lastViewedAt;
+        this.deletedAt = deletedAt;
+    }
+
     public Note(int noteId, @NonNull String title, @NonNull String content,
                 boolean isPinned, boolean isFavorite, boolean isArchived, boolean isDeleted,
-                String tags, String colorCode, LocalDateTime remainderTime,
+                String category, String colorCode, LocalDateTime remainderTime,
                 String attachmentPath, @NonNull LocalDateTime createdAt,
                 LocalDateTime updatedAt, LocalDateTime lastViewedAt, LocalDateTime deletedAt) {
 
@@ -120,7 +157,7 @@ public class Note {
         this.isFavorite = isFavorite;
         this.isArchived = isArchived;
         this.isDeleted = isDeleted;
-        this.tags = tags;
+        this.category = category;
         this.colorCode = colorCode;
         this.remainderTime = remainderTime;
         this.attachmentPath = attachmentPath;
@@ -189,12 +226,12 @@ public class Note {
         isDeleted = deleted;
     }
 
-    public String getTags() {
-        return tags;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getColorCode() {

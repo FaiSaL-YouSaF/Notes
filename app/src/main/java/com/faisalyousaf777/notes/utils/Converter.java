@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.commons;
+package com.faisalyousaf777.notes.utils;
 
 import androidx.room.TypeConverter;
 

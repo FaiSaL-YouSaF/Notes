@@ -1,4 +1,4 @@
-package com.faisalyousaf777.notes.commons;
+package com.faisalyousaf777.notes.ui.edit;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -8,17 +8,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.faisalyousaf777.notes.R;
-import com.faisalyousaf777.notes.commons.entity.Note;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class AddNote extends AppCompatActivity {
 

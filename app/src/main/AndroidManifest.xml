@@ -13,13 +13,16 @@
         android:theme="@style/Theme.Notes"
         tools:targetApi="31">
         <activity
-            android:name=".commons.EditNote"
+            android:name=".ui.edit.AddEditNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".commons.AddNote"
+            android:name=".ui.edit.EditNote"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.edit.AddNote"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
