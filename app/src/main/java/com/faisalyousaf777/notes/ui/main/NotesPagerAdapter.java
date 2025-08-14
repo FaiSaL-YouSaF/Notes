@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.faisalyousaf777.notes.data.Note;
 import com.faisalyousaf777.notes.utils.NoteCategory;
-
-import java.util.List;
 
 public class NotesPagerAdapter extends FragmentStateAdapter {
 

@@ -14,11 +14,6 @@ public class NoteRepository {
     private final NoteDao noteDao;
     private final ExecutorService executorService;
 
-    public NoteRepository(NoteDao noteDao) {
-        this.noteDao = noteDao;
-        executorService = Executors.newFixedThreadPool(2);
-    }
-
     public NoteRepository(@NonNull Application application) {
         NoteDatabase db = NoteDatabase.getInstance(application);
         this.noteDao = db.noteDao();

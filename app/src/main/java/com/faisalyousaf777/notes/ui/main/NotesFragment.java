@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.faisalyousaf777.notes.R;
-import com.faisalyousaf777.notes.data.Note;
 import com.faisalyousaf777.notes.viewmodel.NoteViewModel;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 

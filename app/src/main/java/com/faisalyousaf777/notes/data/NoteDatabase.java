@@ -13,6 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.faisalyousaf777.notes.utils.Converter;
 import com.faisalyousaf777.notes.utils.NoteUtils;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Note.class}, version = 1, exportSchema = false)
@@ -40,11 +41,13 @@ public abstract class NoteDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            Executors.newSingleThreadExecutor().execute(() -> {
-                NoteDao noteDao = INSTANCE.noteDao();
-                noteDao.insertAll(NoteUtils.getSampleNotes());
-                Log.d("DB", "Database pre-populated");
-            });
+            try (ExecutorService executor = Executors.newSingleThreadExecutor()) {
+                executor.execute(() -> {
+                    NoteDao noteDao = INSTANCE.noteDao();
+                    noteDao.insertAll(NoteUtils.getSampleNotes());
+                    Log.d("DB", "Database pre-populated with sample notes");
+                });
+            }
         }
     };
 

@@ -72,9 +72,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
         noteToEdit = noteViewModel.getById(getIntent().getIntExtra(NOTE_ID, -1)).getValue();
 
 
-        toolbar.setNavigationOnClickListener(view -> {
-            showDiscardDialog();
-        });
+        toolbar.setNavigationOnClickListener(view -> showDiscardDialog());
         toolbar.setOnMenuItemClickListener(menuItem -> {
             if (menuItem.getItemId() == R.id.action_toggle_favorite) {
                 isFavorite = !isFavorite;

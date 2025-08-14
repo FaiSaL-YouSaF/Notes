@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.faisalyousaf777.notes.R;
 import com.faisalyousaf777.notes.data.Note;
 import com.faisalyousaf777.notes.ui.edit.AddEditNoteActivity;
-import com.faisalyousaf777.notes.ui.edit.EditNote;
 import com.faisalyousaf777.notes.viewmodel.NoteViewModel;
 
 import java.time.format.DateTimeFormatter;
@@ -28,14 +27,15 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
 
     private List<Note> listOfNotes = new ArrayList<>();
-    private NoteViewModel noteViewModel;
+    private final NoteViewModel noteViewModel;
 
     public NoteAdapter(FragmentActivity fragmentActivity) {
         noteViewModel = new ViewModelProvider(fragmentActivity).get(NoteViewModel.class);
     }
 
     public void setNotes(List<Note> notes) {
-        listOfNotes = notes;
+        // Create a new list to avoid potential mutation issues
+        listOfNotes = new ArrayList<>(notes);
         notifyDataSetChanged();
     }
 
